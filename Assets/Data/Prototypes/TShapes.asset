@@ -15,6 +15,7 @@ MonoBehaviour:
   _prototypes:
   - _id: 3
     _prefab: {fileID: 8288647278659208819, guid: e4b9e3fac43352641989598452a2c94a, type: 3}
+    _weight: 50
     _plusX: 0
     _minusX: 0
     _plusY: 0
@@ -26,6 +27,7 @@ MonoBehaviour:
     - myList: 06000000
   - _id: 4
     _prefab: {fileID: 8288647278659208819, guid: 9056604f7deadc14da9d45e89a4d1ff2, type: 3}
+    _weight: 50
     _plusX: 1
     _minusX: 0
     _plusY: 1
@@ -37,6 +39,7 @@ MonoBehaviour:
     - myList: 0500000007000000
   - _id: 5
     _prefab: {fileID: 8288647278659208819, guid: 04daed974ccb9f547a3592eb6d06fa42, type: 3}
+    _weight: 50
     _plusX: 0
     _minusX: 1
     _plusY: 1
@@ -48,6 +51,7 @@ MonoBehaviour:
     - myList: 0400000007000000
   - _id: 6
     _prefab: {fileID: 8288647278659208819, guid: 86e855df32268e04dadabdb869b13743, type: 3}
+    _weight: 50
     _plusX: 1
     _minusX: 1
     _plusY: 0
@@ -59,6 +63,7 @@ MonoBehaviour:
     - myList: 040000000500000007000000
   - _id: 7
     _prefab: {fileID: 8288647278659208819, guid: 85f4def4713e41e4a8d154e92e39fe61, type: 3}
+    _weight: 50
     _plusX: 1
     _minusX: 1
     _plusY: 1

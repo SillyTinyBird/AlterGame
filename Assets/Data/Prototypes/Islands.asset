@@ -1,0 +1,183 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61cfb75165f896545beab80b0143ec50, type: 3}
+  m_Name: Islands
+  m_EditorClassIdentifier: 
+  _prototypes:
+  - _id: 76
+    _prefab: {fileID: 8288647278659208819, guid: 833429e0ebbab0d4384c0dfaf2129006, type: 3}
+    _weight: 100
+    _plusX: S
+    _minusX: S
+    _plusY: S
+    _minusY: S
+    _directions:
+    - myList: 50000000590000005b000000
+    - myList: 4e0000005a0000005b000000
+    - myList: 51000000580000005a000000
+    - myList: 4f0000005800000059000000
+  - _id: 77
+    _prefab: {fileID: 8288647278659208819, guid: 4ebf05c7e180b824995d7ab7bfe82a96, type: 3}
+    _weight: 100
+    _plusX: W
+    _minusX: W
+    _plusY: W
+    _minusY: W
+    _directions:
+    - myList: 510000005300000055000000
+    - myList: 4f0000005400000055000000
+    - myList: 500000005200000054000000
+    - myList: 4e0000005200000053000000
+  - _id: 78
+    _prefab: {fileID: 8288647278659208819, guid: 7ce23df715b4927458fbac6ef0691b80, type: 3}
+    _weight: 90
+    _plusX: HSW
+    _minusX: HSW
+    _plusY: W
+    _minusY: S
+    _directions:
+    - myList: 520000005a000000
+    - myList: 4d0000004f0000005400000055000000
+    - myList: 530000005b000000
+    - myList: 4c0000004f0000005800000059000000
+  - _id: 79
+    _prefab: {fileID: 8288647278659208819, guid: ad66453ca91c62740a28cd18b2adbee9, type: 3}
+    _weight: 90
+    _plusX: HWS
+    _minusX: HWS
+    _plusY: S
+    _minusY: W
+    _directions:
+    - myList: 5400000058000000
+    - myList: 4c0000004e0000005a0000005b000000
+    - myList: 5500000059000000
+    - myList: 4d0000004e0000005200000053000000
+  - _id: 80
+    _prefab: {fileID: 8288647278659208819, guid: ac0d4d7df7c6a3e4ebf2781afc788e5e, type: 3}
+    _weight: 90
+    _plusX: W
+    _minusX: S
+    _plusY: VSW
+    _minusY: VSW
+    _directions:
+    - myList: 4d000000510000005300000055000000
+    - myList: 5200000059000000
+    - myList: 4c00000051000000580000005a000000
+    - myList: 540000005b000000
+  - _id: 81
+    _prefab: {fileID: 8288647278659208819, guid: 65bf46e267e2b7c4db2327386c99c21c, type: 3}
+    _weight: 90
+    _plusX: S
+    _minusX: W
+    _plusY: VWS
+    _minusY: VWS
+    _directions:
+    - myList: 4c00000050000000590000005b000000
+    - myList: 5300000058000000
+    - myList: 4d000000500000005200000054000000
+    - myList: 550000005a000000
+  - _id: 82
+    _prefab: {fileID: 8288647278659208819, guid: 8eb9e72314e65154ea76d5d678336201, type: 3}
+    _weight: 5
+    _plusX: W
+    _minusX: HSW
+    _plusY: W
+    _minusY: VSW
+    _directions:
+    - myList: 4d000000510000005300000055000000
+    - myList: 4d0000004f0000005400000055000000
+    - myList: 4e000000530000005b000000
+    - myList: 50000000540000005b000000
+  - _id: 83
+    _prefab: {fileID: 8288647278659208819, guid: af61b68b7764b2c4c878c2fe432b3788, type: 3}
+    _weight: 5
+    _plusX: HSW
+    _minusX: W
+    _plusY: W
+    _minusY: VWS
+    _directions:
+    - myList: 4e000000520000005a000000
+    - myList: 4d0000004f0000005400000055000000
+    - myList: 4d000000500000005200000054000000
+    - myList: 51000000550000005a000000
+  - _id: 84
+    _prefab: {fileID: 8288647278659208819, guid: 7385ffea262ea03409a2893337f9b7ad, type: 3}
+    _weight: 5
+    _plusX: W
+    _minusX: HWS
+    _plusY: VSW
+    _minusY: W
+    _directions:
+    - myList: 4d000000510000005300000055000000
+    - myList: 500000005200000059000000
+    - myList: 4f0000005500000059000000
+    - myList: 4d0000004e0000005200000053000000
+  - _id: 85
+    _prefab: {fileID: 8288647278659208819, guid: eed884da54335214b8e578c0100603a3, type: 3}
+    _weight: 5
+    _plusX: HWS
+    _minusX: W
+    _plusY: VWS
+    _minusY: W
+    _directions:
+    - myList: 4f0000005400000058000000
+    - myList: 510000005300000058000000
+    - myList: 4d000000500000005200000054000000
+    - myList: 4d0000004e0000005200000053000000
+  - _id: 88
+    _prefab: {fileID: 8288647278659208819, guid: fdb890d7dfa968c4a9b4e4272653e447, type: 3}
+    _weight: 20
+    _plusX: S
+    _minusX: HWS
+    _plusY: S
+    _minusY: VWS
+    _directions:
+    - myList: 4c00000050000000590000005b000000
+    - myList: 4c0000004e0000005a0000005b000000
+    - myList: 4f0000005500000059000000
+    - myList: 51000000550000005a000000
+  - _id: 89
+    _prefab: {fileID: 8288647278659208819, guid: 440c308fdadd4304888661451c472fb0, type: 3}
+    _weight: 20
+    _plusX: HWS
+    _minusX: S
+    _plusY: S
+    _minusY: VSW
+    _directions:
+    - myList: 4f0000005400000058000000
+    - myList: 4c0000004e0000005a0000005b000000
+    - myList: 4c00000051000000580000005a000000
+    - myList: 50000000540000005b000000
+  - _id: 90
+    _prefab: {fileID: 8288647278659208819, guid: 4f39930c857153c4e90127d376ad72e2, type: 3}
+    _weight: 20
+    _plusX: S
+    _minusX: HSW
+    _plusY: VWS
+    _minusY: S
+    _directions:
+    - myList: 4c00000050000000590000005b000000
+    - myList: 510000005300000058000000
+    - myList: 4e000000530000005b000000
+    - myList: 4c0000004f0000005800000059000000
+  - _id: 91
+    _prefab: {fileID: 8288647278659208819, guid: 90a94bef367728d4b9ae147a71dec857, type: 3}
+    _weight: 20
+    _plusX: HSW
+    _minusX: S
+    _plusY: VSW
+    _minusY: S
+    _directions:
+    - myList: 4e000000520000005a000000
+    - myList: 500000005200000059000000
+    - myList: 4c00000051000000580000005a000000
+    - myList: 4c0000004f0000005800000059000000

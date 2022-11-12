@@ -8,6 +8,7 @@ public class Prototype : IComparable<Prototype>
     private static int _idCount = 0;
     [ShowOnly, SerializeField] private int _id;
     public GameObject _prefab;
+    [Range(0,100)] public int _weight = 50;
     public string _plusX;
     public string _minusX;
     public string _plusY;

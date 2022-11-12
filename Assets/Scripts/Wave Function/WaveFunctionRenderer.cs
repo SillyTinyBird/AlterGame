@@ -13,9 +13,9 @@ public class WaveFunctionRenderer : MonoBehaviour
     {
         if (parent != null)
         {
-            foreach (Transform child in parent.transform)//for some reason destroys only half
+            while(parent.transform.childCount > 0)
             {
-                DestroyImmediate(child.gameObject);
+                DestroyImmediate(parent.transform.GetChild(0).gameObject);
             }
         }
     }

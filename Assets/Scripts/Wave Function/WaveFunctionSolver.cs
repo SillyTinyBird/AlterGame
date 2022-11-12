@@ -47,7 +47,6 @@ public class WaveFunctionSolver : MonoBehaviour
             Iterate();
         }
         _isSolved = true;
-
     }
     private bool IsColapsed()
     {
@@ -106,7 +105,8 @@ public class WaveFunctionSolver : MonoBehaviour
     }
     private void Colapse(Tuple<int, int> at)
     {
-        int index = r.Next(0, _waveFunction[at.Item1, at.Item2].Count);
+        //int index = r.Next(0, _waveFunction[at.Item1, at.Item2].Count);
+        int index = GetRandomWeightedIndex(_waveFunction[at.Item1, at.Item2]);
         //int index = UnityEngine.Random.Range(0,_waveFunction[at.Item1, at.Item2].Count - 1);//if you would like to add weights in the future, add them here
         _waveFunction[at.Item1, at.Item2] = new List<Prototype>() { _waveFunction[at.Item1, at.Item2][index] };//idk if this gonna work
     }
@@ -155,7 +155,7 @@ public class WaveFunctionSolver : MonoBehaviour
         {
             for (int j = 0; j < _sizeY; j++)
             {
-                buf[i, j] = _waveFunction[i, j][0];
+                buf[i, j] = _waveFunction[i, j][0];//error somwhere still
             }
         }
         return buf;
@@ -218,5 +218,30 @@ public class WaveFunctionSolver : MonoBehaviour
         }
         return direectionIndex;
     }
+    public int GetRandomWeightedIndex(List<Prototype> list)
+    {
+        int weightSum = 0;
+        // Get the total sum of all the weights.
+        list.ForEach(i => { weightSum += i._weight; });
+
+        // Step through all the possibilities, one by one, checking to see if each one is selected.
+        int index = 0;
+        int lastIndex = list.Count - 1;
+        while (index < lastIndex)
+        {
+            // Do a probability check with a likelihood of weights[index] / weightSum.
+            if (r.Next(0, weightSum) < list[index]._weight)
+            {
+                return index;
+            }
+
+            // Remove the last item from the sum of total untested weights and try again.
+            weightSum -= list[index++]._weight;
+        }
+
+        // No other item was selected, so return very last index.
+        return index;
+    }
+
 }
 

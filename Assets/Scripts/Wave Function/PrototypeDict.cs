@@ -32,8 +32,6 @@ public class PrototypeDict : ScriptableObject
             x._validNeighborsMinusY.Clear();*/
             foreach (Prototype y in _prototypes)
             {
-                if (y == x)
-                    continue;
                 if(x._plusX == y._minusX)
                 {
                     x.GetDirection(0).Add(y.GetId());

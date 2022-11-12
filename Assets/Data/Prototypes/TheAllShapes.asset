@@ -15,6 +15,7 @@ MonoBehaviour:
   _prototypes:
   - _id: 3
     _prefab: {fileID: 8288647278659208819, guid: e4b9e3fac43352641989598452a2c94a, type: 3}
+    _weight: 100
     _plusX: 0
     _minusX: 0
     _plusY: 0
@@ -26,6 +27,7 @@ MonoBehaviour:
     - myList: 0600000023000000290000002b0000002c0000002d0000002e000000
   - _id: 4
     _prefab: {fileID: 8288647278659208819, guid: 9056604f7deadc14da9d45e89a4d1ff2, type: 3}
+    _weight: 50
     _plusX: 1
     _minusX: 0
     _plusY: 1
@@ -37,6 +39,7 @@ MonoBehaviour:
     - myList: 0500000007000000240000002a0000002f0000003000000031000000
   - _id: 5
     _prefab: {fileID: 8288647278659208819, guid: 04daed974ccb9f547a3592eb6d06fa42, type: 3}
+    _weight: 50
     _plusX: 0
     _minusX: 1
     _plusY: 1
@@ -48,6 +51,7 @@ MonoBehaviour:
     - myList: 0400000007000000240000002a0000002f0000003000000031000000
   - _id: 6
     _prefab: {fileID: 8288647278659208819, guid: 86e855df32268e04dadabdb869b13743, type: 3}
+    _weight: 50
     _plusX: 1
     _minusX: 1
     _plusY: 0
@@ -59,6 +63,7 @@ MonoBehaviour:
     - myList: 040000000500000007000000240000002a0000002f0000003000000031000000
   - _id: 7
     _prefab: {fileID: 8288647278659208819, guid: 85f4def4713e41e4a8d154e92e39fe61, type: 3}
+    _weight: 50
     _plusX: 1
     _minusX: 1
     _plusY: 1
@@ -70,6 +75,7 @@ MonoBehaviour:
     - myList: 030000000600000023000000290000002b0000002c0000002d0000002e000000
   - _id: 35
     _prefab: {fileID: 8288647278659208819, guid: b2149b06397be704384440561c9bc74b, type: 3}
+    _weight: 100
     _plusX: 1
     _minusX: 1
     _plusY: 0
@@ -81,6 +87,7 @@ MonoBehaviour:
     - myList: 0300000006000000290000002b0000002c0000002d0000002e000000
   - _id: 36
     _prefab: {fileID: 8288647278659208819, guid: a7336878bd8794e41bbe829dba8ebb44, type: 3}
+    _weight: 100
     _plusX: 0
     _minusX: 0
     _plusY: 1
@@ -92,6 +99,7 @@ MonoBehaviour:
     - myList: 0400000005000000070000002a0000002f0000003000000031000000
   - _id: 41
     _prefab: {fileID: 8288647278659208819, guid: 2261014ee0612d742bc10f398aef59fb, type: 3}
+    _weight: 50
     _plusX: 0
     _minusX: 0
     _plusY: 0
@@ -103,6 +111,7 @@ MonoBehaviour:
     - myList: 040000000500000007000000240000002a0000002f0000003000000031000000
   - _id: 42
     _prefab: {fileID: 8288647278659208819, guid: d5ee0b3215f01b74ab09a6aca1fc7fad, type: 3}
+    _weight: 50
     _plusX: 0
     _minusX: 0
     _plusY: 1
@@ -114,6 +123,7 @@ MonoBehaviour:
     - myList: 030000000600000023000000290000002b0000002c0000002d0000002e000000
   - _id: 43
     _prefab: {fileID: 8288647278659208819, guid: 26627822f32c9c5458e14615e2d4b304, type: 3}
+    _weight: 50
     _plusX: 1
     _minusX: 0
     _plusY: 0
@@ -125,6 +135,7 @@ MonoBehaviour:
     - myList: 030000000600000023000000290000002c0000002d0000002e000000
   - _id: 44
     _prefab: {fileID: 8288647278659208819, guid: 46ac6803e69f8824280bef2aa04d9133, type: 3}
+    _weight: 50
     _plusX: 0
     _minusX: 1
     _plusY: 0
@@ -136,6 +147,7 @@ MonoBehaviour:
     - myList: 030000000600000023000000290000002b0000002d0000002e000000
   - _id: 45
     _prefab: {fileID: 8288647278659208819, guid: 9fb9b97651d5a2b4d8fe39398ab52968, type: 3}
+    _weight: 50
     _plusX: 0
     _minusX: 1
     _plusY: 0
@@ -147,6 +159,7 @@ MonoBehaviour:
     - myList: 040000000500000007000000240000002a0000002f0000003000000031000000
   - _id: 46
     _prefab: {fileID: 8288647278659208819, guid: 45a509bc80644d5499667372cd013744, type: 3}
+    _weight: 50
     _plusX: 1
     _minusX: 0
     _plusY: 0
@@ -158,6 +171,7 @@ MonoBehaviour:
     - myList: 040000000500000007000000240000002a0000002f0000003000000031000000
   - _id: 47
     _prefab: {fileID: 8288647278659208819, guid: 47b13cac0f470f14b8bc1439ec2674f2, type: 3}
+    _weight: 50
     _plusX: 0
     _minusX: 1
     _plusY: 1
@@ -169,6 +183,7 @@ MonoBehaviour:
     - myList: 030000000600000023000000290000002b0000002c0000002d0000002e000000
   - _id: 48
     _prefab: {fileID: 8288647278659208819, guid: 9538c07fe2062384c8e96705143559e6, type: 3}
+    _weight: 50
     _plusX: 1
     _minusX: 0
     _plusY: 1
@@ -180,6 +195,7 @@ MonoBehaviour:
     - myList: 030000000600000023000000290000002b0000002c0000002d0000002e000000
   - _id: 49
     _prefab: {fileID: 8288647278659208819, guid: c24ca2307261dd84c85bed5501908ac4, type: 3}
+    _weight: 5
     _plusX: 1
     _minusX: 1
     _plusY: 1
