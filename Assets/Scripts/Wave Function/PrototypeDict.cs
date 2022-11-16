@@ -10,7 +10,6 @@ public class PrototypeDict : ScriptableObject
     public void Awake()
     {
         ParseValidNeighbors(); 
-        Debug.Log("Awake");
     }
     public void AddToList()
     {

@@ -26,19 +26,17 @@ public class Prototype : IComparable<Prototype>
         _idCount += 1;
         _directions = new DirectionsWrapper[4];
     }
-    /// <summary>
-    /// Index represent a direction:
-    /// [0] = x+ ;[1] = y+; [2] = x-;[3] = y-
-    /// </summary>
     public void ClearDirections()
     {
         for (int i = 0; i < 4; i++)
         {
             _directions[i].Clear();
         }
-        //_directions.ForEach(item => { item.Clear(); });
-        Debug.LogFormat("Changed!");
     }
+    /// <summary>
+    /// Index represent a direction:
+    /// [0] = x+ ;[1] = y+; [2] = x-;[3] = y-
+    /// </summary>
     public int GetId() => _id;
     //public void SetValidNeighbors(List<Prototype> validNeighbors) => _validNeighbors = validNeighbors;
     public void SetPrefabs(GameObject prefab) => _prefab = prefab;

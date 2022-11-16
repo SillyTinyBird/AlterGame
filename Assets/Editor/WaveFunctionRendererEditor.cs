@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-[CustomEditor(typeof(WaveFunctionRenderer))]
+//[CustomEditor(typeof(WaveFunctionRenderer))]
 public class WaveFunctionRendererEditor : Editor
 {
     public override void OnInspectorGUI()
     {
         WaveFunctionRenderer script = (WaveFunctionRenderer)target;
         //DrawDefaultInspector();
-        if (GUILayout.Button("Draw"))
+        /*if (GUILayout.Button("Draw"))
         {
             script.DrawWaveFunction();
         }
@@ -17,6 +17,10 @@ public class WaveFunctionRendererEditor : Editor
         {
             script.Clear();
         }
+        /*if (GUILayout.Button("Next"))
+        {
+            script.PrepareNext();
+        }*/
         base.OnInspectorGUI();
     }
 }

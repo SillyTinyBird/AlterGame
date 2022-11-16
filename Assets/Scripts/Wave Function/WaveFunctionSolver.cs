@@ -7,18 +7,11 @@ public class WaveFunctionSolver : MonoBehaviour
 {
     [SerializeField] private PrototypeDict _dictionary;
     private List<Prototype>[,] _waveFunction;// = new List<Prototype>[8, 8];
-    public int _sizeX = 0;
-    public int _sizeY = 0;
+    private int _sizeX = 0;
+    private int _sizeY = 0;
     private bool _isSolved = false;
     private readonly System.Random r = new System.Random();
     private List<Prototype> error;
-    /*void Start()
-    {
-        Initialize();
-        //Debug.Log(_dictionary.GetPrototypeById(7)._prefab);
-        Prototype[,] bruh = GetWaveFunction();
-        Debug.Log(_waveFunction.GetLength(0));
-    }*/
     public Prototype[,] GetWaveFunction()
     {
         if(!_isSolved)
@@ -27,8 +20,11 @@ public class WaveFunctionSolver : MonoBehaviour
         }
         return RemoveLists();
     }
-    public void Initialize()
+    public Tuple<int,int> GetDimensions() => Tuple.Create(_sizeX, _sizeY);
+    public void Initialize(int sizeX, int sizeY)
     {
+        _sizeX = sizeX;
+        _sizeY = sizeY;
         _waveFunction = new List<Prototype>[_sizeX, _sizeY];
         for (int i = 0; i < _sizeX; i++)
         {
@@ -38,6 +34,29 @@ public class WaveFunctionSolver : MonoBehaviour
             }
         }
         error = new List<Prototype>() { _waveFunction[0,0][0]};
+        _isSolved = false;
+    }
+    public void Initialize(int sizeX, int sizeY, Prototype[] firstLine)
+    {
+        _sizeX = sizeX;
+        _sizeY = sizeY;
+        List<Tuple<int, int>> affectedCoords = new();
+        _waveFunction = new List<Prototype>[_sizeX, _sizeY];
+        for (int i = 0; i < _sizeX; i++)
+        {
+            for (int j = 0; j < _sizeY; j++)
+            {
+                if(i == 0)
+                {
+                    _waveFunction[i, j] = new List<Prototype>() { firstLine[j] };
+                    affectedCoords.Add(Tuple.Create(i, j));
+                    continue;
+                }
+                _waveFunction[i, j] = new List<Prototype>(_dictionary.GetPrototypes());
+            }
+        }
+        error = new List<Prototype>() { _waveFunction[0, 0][0] };
+        affectedCoords.ForEach(x => { Propagate(x); });
         _isSolved = false;
     }
     private void Solve()
