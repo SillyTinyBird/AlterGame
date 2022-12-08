@@ -55,7 +55,7 @@ public class WaveFunctionSolver : MonoBehaviour
                 _waveFunction[i, j] = new List<Prototype>(_dictionary.GetPrototypes());
             }
         }
-        error = new List<Prototype>() { _waveFunction[0, 0][0] };
+        error = new List<Prototype>() { _waveFunction[0, 0][0] };//needs a change
         affectedCoords.ForEach(x => { Propagate(x); });
         _isSolved = false;
     }
@@ -157,12 +157,12 @@ public class WaveFunctionSolver : MonoBehaviour
                         }
                     }
                 }
-                if(buffer.Count == 0)
+                _waveFunction[neighbor.Item1, neighbor.Item2] = buffer;
+                if (buffer.Count == 0)
                 {
                     _waveFunction[neighbor.Item1, neighbor.Item2] = error;
                     Debug.Log("errpr00");
                 }
-                _waveFunction[neighbor.Item1, neighbor.Item2] = buffer;//if none changes were made, dont 
             }
         }
     }

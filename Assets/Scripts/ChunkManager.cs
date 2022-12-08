@@ -10,11 +10,13 @@ public class ChunkManager : MonoBehaviour
     [SerializeField] private int _sizeY = 0;
     [SerializeField] private GameObject _chunk1Object;
     [SerializeField] private GameObject _chunk2Object;
-    [SerializeField] private GameObject _clearHitbox;
-    [SerializeField] private GameObject _nextHitbox;
+    [SerializeField] private GameObject _clearHitbox;//it was a hitbox i promise
+    [SerializeField] private GameObject _nextHitbox;//now its just here so i can have transform i can refer to when deciding next chunk generation timing
     [SerializeField, Range(0f, 1f)] private float _clearPositionRatio;
     [SerializeField, Range(0f, 1f)] private float _nexxtPositionRatio;
-    [SerializeField] [Range(0f, 5f)] private float _scrollAmount;
+    [SerializeField, Range(0f, 5f)] private float _scrollAmount;
+    [SerializeField] private PrototypeDict _dictionary;
+    [SerializeField] private int[] _firstLaneIds = new int[3];
     private bool _nextCleared;
     private bool _nextReady;
     private WaveFunctionRenderer _chunk1;
@@ -29,16 +31,19 @@ public class ChunkManager : MonoBehaviour
         DrawFirst();
         _nextReady = true;
         _nextCleared = true;
+        ScrollScript.SetSpeed(_scrollAmount);
     }
     private void FixedUpdate()
     {
-        if (_clearHitbox.transform.position.x <= transform.position.x && _clearHitbox.transform.position.x +_xDelta >= transform.position.x && _nextReady == true)
+        if (_clearHitbox.transform.position.x <= transform.position.x && 
+            _clearHitbox.transform.position.x +_xDelta >= transform.position.x && _nextReady == true)
         {
             ClearLast();
             _nextCleared = true;
             _nextReady = false;
         }
-        if (_nextHitbox.transform.position.x <= transform.position.x && _nextHitbox.transform.position.x + _xDelta >= transform.position.x && _nextCleared == true)
+        if (_nextHitbox.transform.position.x <= transform.position.x && 
+            _nextHitbox.transform.position.x + _xDelta >= transform.position.x && _nextCleared == true)
         {
             DrawNext();
             _nextReady = true;
@@ -47,7 +52,10 @@ public class ChunkManager : MonoBehaviour
     }
     public void DrawFirst()
     {
-        _chunk1.DrawWaveFunction(_sizeX, _sizeY, _xDelta, _yDelta);
+        _chunk1.DrawWaveFunction(_sizeX, _sizeY, _xDelta, _yDelta,new Prototype[] {
+            _dictionary.GetPrototypeById(_firstLaneIds[0]),
+            _dictionary.GetPrototypeById(_firstLaneIds[1]), 
+            _dictionary.GetPrototypeById(_firstLaneIds[2])});
         _currentChunkId = 1;
     }
     public void ClearLast()

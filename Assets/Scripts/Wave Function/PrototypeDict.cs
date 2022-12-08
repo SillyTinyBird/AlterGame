@@ -22,6 +22,11 @@ public class PrototypeDict : ScriptableObject
     public List<Prototype> GetPrototypes() => _prototypes;
     public void ParseValidNeighbors()
     {
+        int i = 0;
+        foreach (Prototype x in _prototypes)
+        {
+            x.SetId(i++);
+        }
         foreach (Prototype x in _prototypes)
         {
             x.ClearDirections();

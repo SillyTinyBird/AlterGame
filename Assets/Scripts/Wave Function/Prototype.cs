@@ -8,7 +8,7 @@ public class Prototype : IComparable<Prototype>
     private static int _idCount = 0;
     [ShowOnly, SerializeField] private int _id;
     public GameObject _prefab;
-    [Range(0,100)] public int _weight = 50;
+    [Range(0, 100)] public int _weight = 50;
     public string _plusX;
     public string _minusX;
     public string _plusY;
@@ -38,6 +38,7 @@ public class Prototype : IComparable<Prototype>
     /// [0] = x+ ;[1] = y+; [2] = x-;[3] = y-
     /// </summary>
     public int GetId() => _id;
+    public void SetId(int id) => _id = id; 
     //public void SetValidNeighbors(List<Prototype> validNeighbors) => _validNeighbors = validNeighbors;
     public void SetPrefabs(GameObject prefab) => _prefab = prefab;
     public void SetEdges(string minusX, string plusX, string minusY, string plusY)
