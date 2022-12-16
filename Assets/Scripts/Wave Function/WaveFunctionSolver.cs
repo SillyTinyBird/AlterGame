@@ -157,11 +157,15 @@ public class WaveFunctionSolver : MonoBehaviour
                         }
                     }
                 }
-                _waveFunction[neighbor.Item1, neighbor.Item2] = buffer;
+                
                 if (buffer.Count == 0)
                 {
                     _waveFunction[neighbor.Item1, neighbor.Item2] = error;
                     Debug.Log("errpr00");
+                }
+                else
+                {
+                    _waveFunction[neighbor.Item1, neighbor.Item2] = buffer;
                 }
             }
         }
