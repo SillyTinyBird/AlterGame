@@ -28,7 +28,6 @@ public class InputManager : Singleton<InputManager>
         {
             OnStartTouch(CameraToWorldPosition.ScreenToWorld(_camera, _controls.Touch.Position.ReadValue<Vector2>()),(float)context.startTime);
         }
-        Debug.Log("Start: " + CameraToWorldPosition.ScreenToWorld(_camera, _controls.Touch.Position.ReadValue<Vector2>()));
     }
     private void EndTouch(InputAction.CallbackContext context)
     {
@@ -36,6 +35,5 @@ public class InputManager : Singleton<InputManager>
         {
             OnEndTouch(CameraToWorldPosition.ScreenToWorld(_camera, _controls.Touch.Position.ReadValue<Vector2>()), (float)context.time);
         }
-        Debug.Log("End: " + CameraToWorldPosition.ScreenToWorld(_camera, _controls.Touch.Position.ReadValue<Vector2>()));
     }
 }
