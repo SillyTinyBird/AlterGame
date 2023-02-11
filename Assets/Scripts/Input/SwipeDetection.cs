@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
 using UnityEngine;
-
-public class SwipeDetection : MonoBehaviour
+[DefaultExecutionOrder(-1)]
+public class SwipeDetection : Singleton<SwipeDetection>
 {
     [SerializeField] private float _minimumDistance = 0.2f;
     [SerializeField] private float _maximumTime = 1f;
@@ -12,6 +12,11 @@ public class SwipeDetection : MonoBehaviour
     private float _startTime;
     private float _endTime;
     [SerializeField, Range(0f,1f)] private float _dirThreshold = .8f;
+
+    public delegate void SwipeUp();
+    public event SwipeUp OnSwipeUp;
+    public delegate void SwipeDown();
+    public event SwipeDown OnSwipeDown;
 
     private void Awake()
     {
@@ -53,11 +58,13 @@ public class SwipeDetection : MonoBehaviour
     {
         if(Vector2.Dot(Vector2.up,direction)>_dirThreshold)
         {
-            Debug.Log("UP");
+            if (OnSwipeUp != null)
+                OnSwipeUp();
         }
         else if (Vector2.Dot(Vector2.down, direction) > _dirThreshold)
         {
-            Debug.Log("DOWN");
+            if (OnSwipeDown != null)
+                OnSwipeDown();
         }
         //add more directions here if necessary 
     }

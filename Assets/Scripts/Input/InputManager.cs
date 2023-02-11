@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-[DefaultExecutionOrder(-1)]
+[DefaultExecutionOrder(-2)]
 public class InputManager : Singleton<InputManager>
 {
     public delegate void StartTouchEvent(Vector2 position, float time);
