@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private SwipeDetection _swipeDetection;
-    [ShowOnly] private int _layerID = 1;// 0 = lower; 1 = middle; 2 = upper.
+    private static int _layerID = 1;// 0 = lower; 1 = middle; 2 = upper.
     [SerializeField] private float _layerDelta = 5f;
     [SerializeField] private float _moveSpeed = 0.2f;
     [SerializeField] private float _jumpSpeed = 0.2f;
@@ -19,11 +19,9 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _swipeDetection = SwipeDetection.Instance;
+        _layerID = 1;//we start on the middle layer
     }
-    private void FixedUpdate()
-    {
-
-    }
+    public static int LayerID => _layerID;
     private void OnEnable()
     {
         _swipeDetection.OnSwipeUp += SwipeUp;
@@ -86,7 +84,6 @@ public class PlayerController : MonoBehaviour
             
             transform.position = Vector2.Lerp(startPosition, endPos, _jumpCurve.Evaluate(time / moveSpeed));
             time += Time.deltaTime;
-            Debug.Log(_jumpCurve.Evaluate(time / moveSpeed));
             yield return null;
         }
         transform.position = startPosition;

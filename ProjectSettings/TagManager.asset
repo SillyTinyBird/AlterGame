@@ -6,6 +6,12 @@ TagManager:
   tags:
   - StairsUp
   - StairsDown
+  - UpperLayer
+  - MiddleLayer
+  - LowerLayer
+  - UpperLayerDrop
+  - MiddleLayerDrop
+  - LowerLayerDrop
   layers:
   - Default
   - TransparentFX
