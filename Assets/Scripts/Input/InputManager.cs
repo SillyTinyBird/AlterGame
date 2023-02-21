@@ -15,6 +15,7 @@ public class InputManager : Singleton<InputManager>
         _controls = new();
         _camera = Camera.main;
     }
+
     private void OnEnable() => _controls.Enable();
     private void OnDisable() => _controls.Disable();
     void Start()
@@ -26,14 +27,14 @@ public class InputManager : Singleton<InputManager>
     {
         if (OnStartTouch != null)
         {
-            OnStartTouch(CameraToWorldPosition.ScreenToWorld(_camera, _controls.Touch.Position.ReadValue<Vector2>()),(float)context.startTime);
+            OnStartTouch(CameraToWorldPosition.ScreenToWorld(_controls.Touch.Position.ReadValue<Vector2>()),(float)context.startTime);
         }
     }
     private void EndTouch(InputAction.CallbackContext context)
     {
         if (OnEndTouch != null)
         {
-            OnEndTouch(CameraToWorldPosition.ScreenToWorld(_camera, _controls.Touch.Position.ReadValue<Vector2>()), (float)context.time);
+            OnEndTouch(CameraToWorldPosition.ScreenToWorld(_controls.Touch.Position.ReadValue<Vector2>()), (float)context.time);
         }
     }
 }

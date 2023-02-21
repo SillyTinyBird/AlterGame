@@ -1,10 +1,9 @@
 using UnityEngine;
-
 public class CameraToWorldPosition : MonoBehaviour
 {
-    public static Vector3 ScreenToWorld(Camera cam, Vector3 position)
+    public static Vector3 ScreenToWorld(Vector3 position)
     {
-        position.z = cam.nearClipPlane;
-        return cam.ScreenToWorldPoint(position);
+        position.z = Camera.main.nearClipPlane;
+        return Camera.main.ScreenToWorldPoint(position);
     }
 }

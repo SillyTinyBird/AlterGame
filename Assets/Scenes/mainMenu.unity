@@ -133,7 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 72384116}
   - component: {fileID: 72384115}
-  - component: {fileID: 72384114}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -141,14 +140,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &72384114
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 72384113}
-  m_Enabled: 1
 --- !u!20 &72384115
 Camera:
   m_ObjectHideFlags: 0
@@ -665,7 +656,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: game lmao
+  m_text: Alter rooftop run!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 17063d599d910004aac2cb81f33bcd35, type: 2}
   m_sharedMaterial: {fileID: 7153908230069715698, guid: 17063d599d910004aac2cb81f33bcd35, type: 2}
@@ -692,7 +683,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 190
+  m_fontSize: 136.55
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

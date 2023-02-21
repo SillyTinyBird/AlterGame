@@ -10,6 +10,7 @@ public class ObstacleScript : MonoBehaviour
     private Dictionary<string, int> _layers = new Dictionary<string, int>() { 
         { "LowerLayer", 0 }, { "MiddleLayer", 1 }, { "UpperLayer", 2 }, 
         { "LowerLayerDrop", 0 }, { "MiddleLayerDrop", 1 }, { "UpperLayerDrop", 2 } };
+    [SerializeField] PlaymodeInterfaceScript _failManager;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         int layerOfColidedObject;
@@ -24,10 +25,12 @@ public class ObstacleScript : MonoBehaviour
         if(collision.gameObject.tag.Contains("Drop"))
         {
             Debug.Log("fall on the layer " + layerOfColidedObject);
+            _failManager.FailActions();
         }
         else
         {
             Debug.Log("bonk on the layer " + layerOfColidedObject);
+            _failManager.FailActions();
         }
     }
 }

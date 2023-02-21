@@ -813,13 +813,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 1753540965}
+        m_TargetAssemblyTypeName: PlaymodeInterfaceScript, Assembly-CSharp
+        m_MethodName: SetPause
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1106,7 +1106,7 @@ MonoBehaviour:
   _nexxtPositionRatio: 0.6
   _scrollAmount: 0.1
   _dictionary: {fileID: 11400000, guid: 48a00d228d80afd45a4beec618f83aa7, type: 2}
-  _firstLaneIds: 020000000100000000000000
+  _firstLaneIds: 020000000300000000000000
 --- !u!4 &317025553
 Transform:
   m_ObjectHideFlags: 0
@@ -1300,6 +1300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c72be05e81b765a44929f2c303c2143d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _failManager: {fileID: 1753540965}
 --- !u!1 &418002213
 GameObject:
   m_ObjectHideFlags: 0
@@ -1846,7 +1847,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1144178545}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1753540965}
+        m_TargetAssemblyTypeName: PlaymodeInterfaceScript, Assembly-CSharp
+        m_MethodName: BackToManuButtonAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1753540965}
+        m_TargetAssemblyTypeName: PlaymodeInterfaceScript, Assembly-CSharp
+        m_MethodName: SetPause
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1144178545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2411,7 +2436,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1323937940}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1753540965}
+        m_TargetAssemblyTypeName: PlaymodeInterfaceScript, Assembly-CSharp
+        m_MethodName: ReloadLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1753540965}
+        m_TargetAssemblyTypeName: PlaymodeInterfaceScript, Assembly-CSharp
+        m_MethodName: SetPause
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1323937940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2779,17 +2828,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 1753540965}
+        m_TargetAssemblyTypeName: PlaymodeInterfaceScript, Assembly-CSharp
+        m_MethodName: SetPause
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1428525419
 MonoBehaviour:
@@ -3137,7 +3186,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28.9
+  m_fontSize: 34.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3199,6 +3248,8 @@ GameObject:
   - component: {fileID: 1753540962}
   - component: {fileID: 1753540961}
   - component: {fileID: 1753540960}
+  - component: {fileID: 1753540965}
+  - component: {fileID: 1753540964}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3290,6 +3341,33 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1753540964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753540959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 689ba478b934c65478d7f070b45fd288, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scoreText: {fileID: 122710766}
+--- !u!114 &1753540965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753540959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46046199949ea484e95460320f91b6a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _deathScreenGroup: {fileID: 166480441}
+  _overlayGroup: {fileID: 1542550510}
 --- !u!1 &1842604284
 GameObject:
   m_ObjectHideFlags: 0
@@ -3373,7 +3451,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1842604287}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1753540965}
+        m_TargetAssemblyTypeName: PlaymodeInterfaceScript, Assembly-CSharp
+        m_MethodName: BackToManuButtonAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1753540965}
+        m_TargetAssemblyTypeName: PlaymodeInterfaceScript, Assembly-CSharp
+        m_MethodName: SetPause
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1842604287
 MonoBehaviour:
   m_ObjectHideFlags: 0
