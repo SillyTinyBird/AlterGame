@@ -17,8 +17,8 @@ public class ScoreSystem : MonoBehaviour
         while (true)//waiting for 2147483647
         {
             _score++;
-            _scoreText.SetText(_score.ToString());
-            yield return new WaitForSeconds(1);
+            _scoreText.SetText(_score.ToString("000000"));
+            yield return new WaitForSeconds(0.05f);
         }
     }
 }
