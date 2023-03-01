@@ -122,7 +122,7 @@ MonoBehaviour:
     - myList: 03000000060000000700000008000000090000000a000000140000002300000027000000
     - myList: 0f00000018000000
   - _id: 9
-    _prefab: {fileID: 8288647278659208819, guid: 8979c3cd2a56b104c9ba5c7c74867865, type: 3}
+    _prefab: {fileID: 8288647278659208819, guid: 71f4a15bc5338464d92c43c001cba12a, type: 3}
     _weight: 50
     _plusX: roof_Id1
     _minusX: roof_Id1
@@ -326,7 +326,7 @@ MonoBehaviour:
     - myList: 00000000190000001a00000026000000
     - myList: 01000000
   - _id: 26
-    _prefab: {fileID: 8288647278659208819, guid: a0a732bace7c35548a3b250289a4b751, type: 3}
+    _prefab: {fileID: 8288647278659208819, guid: cf20e4668aa43bf44bad865b167b0168, type: 3}
     _weight: 20
     _plusX: noBox
     _minusX: yesBox
@@ -338,7 +338,7 @@ MonoBehaviour:
     - myList: 1b0000001c0000001d0000001f00000020000000220000002500000028000000
     - myList: 09000000
   - _id: 27
-    _prefab: {fileID: 8288647278659208819, guid: 7e19f78367040f3488ff7b5420826531, type: 3}
+    _prefab: {fileID: 8288647278659208819, guid: f24a7a0816f276b429ed9bd6940f5fcd, type: 3}
     _weight: 20
     _plusX: yesBox
     _minusX: noBox

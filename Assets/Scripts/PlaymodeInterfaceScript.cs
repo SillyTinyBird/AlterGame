@@ -4,6 +4,7 @@ public class PlaymodeInterfaceScript : MonoBehaviour
 {
     [SerializeField] private GameObject _deathScreenGroup;
     [SerializeField] private GameObject _overlayGroup;
+    [SerializeField] private AdsManager _adsManager;
     public void SetPause(bool isPaused)
     {
         if (isPaused)
@@ -26,6 +27,10 @@ public class PlaymodeInterfaceScript : MonoBehaviour
     }
     public void ReloadLevel()
     {
+        if (_adsManager.IsAdLoaded)
+        {
+            _adsManager.ShowAd();
+        }
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);//async, for now
     }
     public void BackToManuButtonAction()
