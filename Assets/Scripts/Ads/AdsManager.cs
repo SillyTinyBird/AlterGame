@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.Advertisements;
-public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnityAdsLoadListener, IUnityAdsShowListener
+public class AdsManager : MonoBehaviour/*, IUnityAdsInitializationListener, IUnityAdsLoadListener, IUnityAdsShowListener*/
 {
     [SerializeField] string _androidGameId;
     [SerializeField] string _iOSGameId;
@@ -13,7 +13,7 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnity
 
     public bool IsAdLoaded { get => _isAdLoaded; }
 
-    void Awake()
+    /*void Awake()
     {
         InitializeAds();
         _adUnitId = (Application.platform == RuntimePlatform.IPhonePlayer)
@@ -74,6 +74,6 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnity
     {
         Time.timeScale = 1;// resume
         _isAdLoaded = false;
-    }
+    }*/
 
 }

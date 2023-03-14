@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private string _currentTag = "";
     private bool _actionAllowed = false;// to prevent actions from accuring while another action is in motion, and also to esure that player can move only once per stair
     private bool _isJumpingOrSliding = false;
+    [SerializeField] private Animator _animarot; 
     private void Awake()
     {
         _swipeDetection = SwipeDetection.Instance;
@@ -76,6 +77,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator JumpAction(float height, float moveSpeed)
     {
         _isJumpingOrSliding = true;
+        _animarot.SetBool("IsJumping", true);
         float time = 0;
         Vector2 startPosition = transform.position;
         Vector2 endPos = new Vector2(transform.position.x, transform.position.y + height);
@@ -87,6 +89,7 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
         transform.position = startPosition;
+        _animarot.SetBool("IsJumping", false);
         _isJumpingOrSliding = false;
     }
     private void OnTriggerEnter2D(Collider2D collision)

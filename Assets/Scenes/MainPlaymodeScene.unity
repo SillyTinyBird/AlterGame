@@ -157,7 +157,7 @@ RectTransform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.8}
-  m_AnchorMax: {x: 0.55, y: 1}
+  m_AnchorMax: {x: 0.55, y: 0.96}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.49999997}
@@ -1139,6 +1139,7 @@ GameObject:
   - component: {fileID: 409828909}
   - component: {fileID: 409828910}
   - component: {fileID: 409828911}
+  - component: {fileID: 409828912}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1210,6 +1211,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _animarot: {fileID: 409828912}
 --- !u!212 &409828909
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1301,6 +1303,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _failManager: {fileID: 1753540965}
+--- !u!95 &409828912
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 409828906}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4bfa6e7a821046b46b00f06cd0acb834, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &418002213
 GameObject:
   m_ObjectHideFlags: 0
@@ -2720,7 +2742,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28.15
+  m_fontSize: 30
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3199,8 +3221,8 @@ RectTransform:
   m_Father: {fileID: 1542550511}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.619, y: 0.94468325}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.619, y: 0.9}
+  m_AnchorMax: {x: 1, y: 0.96}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3827,9 +3849,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e31aa7c5aa7fe949ae94158522b8129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _androidGameId: null
-  _iOSGameId: null
-  _testMode: 1
+  _androidGameId: 5178863
+  _iOSGameId: 5178862
+  _testMode: 0
   _androidAdUnitId: Interstitial_Android
   _iOsAdUnitId: Interstitial_iOS
 --- !u!1 &1842604284

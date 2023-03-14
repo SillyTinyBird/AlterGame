@@ -29,7 +29,7 @@ public class PlaymodeInterfaceScript : MonoBehaviour
     {
         if (_adsManager.IsAdLoaded)
         {
-            _adsManager.ShowAd();
+            //_adsManager.ShowAd();
         }
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);//async, for now
     }
