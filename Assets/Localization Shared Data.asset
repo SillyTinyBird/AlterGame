@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Localization Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Localization
+  m_TableCollectionNameGuidString: ef91748c5d6e5ff499f15a7c1da17e91
+  m_Entries:
+  - m_Id: 4343859093504
+    m_Key: MainPlaymodeScene/Canvas/Overlay/Pause Button/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27376309084160
+    m_Key: MainPlaymodeScene/Canvas/Death Screen/Whoops
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27417606201344
+    m_Key: MainPlaymodeScene/Canvas/Death Screen/Again
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27476787830784
+    m_Key: MainPlaymodeScene/Canvas/Death Screen/Play/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27502767349760
+    m_Key: MainPlaymodeScene/Canvas/Death Screen/Menu/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27558216048640
+    m_Key: MainPlaymodeScene/Canvas/Pause Screen/Pause Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27581234388992
+    m_Key: MainPlaymodeScene/Canvas/Pause Screen/Text?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27654529851392
+    m_Key: MainPlaymodeScene/Canvas/Pause Screen/Continue/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27676373786624
+    m_Key: MainPlaymodeScene/Canvas/Pause Screen/Menu/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27973334704128
+    m_Key: mainMenu/Canvas/Menu/Play Button/Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28005823782912
+    m_Key: mainMenu/Canvas/Menu/Options Button/Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28048534380544
+    m_Key: mainMenu/Canvas/Options/Options Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28068830617600
+    m_Key: mainMenu/Canvas/Options/Music Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28108986884096
+    m_Key: mainMenu/Canvas/Options/SFX Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28217619357696
+    m_Key: mainMenu/Canvas/Options/Back Button/Options
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 1263765884728246296
+  references:
+    version: 2
+    RefIds:
+    - rid: 1263765884728246296
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1679121804415

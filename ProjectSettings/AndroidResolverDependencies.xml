@@ -40,7 +40,7 @@
     <file>Assets/Plugins/Android/com.google.protobuf.protobuf-javalite-3.19.3.jar</file>
     <file>Assets/Plugins/Android/com.squareup.okhttp3.okhttp-4.6.0.jar</file>
     <file>Assets/Plugins/Android/com.squareup.okio.okio-2.6.0.jar</file>
-    <file>Assets/Plugins/Android/com.unity3d.ads.unity-ads-4.6.0.aar</file>
+    <file>Assets/Plugins/Android/com.unity3d.ads.unity-ads-4.6.1.aar</file>
     <file>Assets/Plugins/Android/com.unity3d.mediation.mediation-adapter-1.1.0.aar</file>
     <file>Assets/Plugins/Android/com.unity3d.mediation.mediation-logger-1.1.0.aar</file>
     <file>Assets/Plugins/Android/com.unity3d.mediation.mediation-sdk-1.1.0.aar</file>
