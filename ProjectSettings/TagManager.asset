@@ -12,6 +12,7 @@ TagManager:
   - UpperLayerDrop
   - MiddleLayerDrop
   - LowerLayerDrop
+  - Coin
   layers:
   - Default
   - TransparentFX
