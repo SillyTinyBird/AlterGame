@@ -23,10 +23,6 @@ MonoBehaviour:
     m_Key: MainPlaymodeScene/Canvas/Death Screen/Whoops
     m_Metadata:
       m_Items: []
-  - m_Id: 27417606201344
-    m_Key: MainPlaymodeScene/Canvas/Death Screen/Again
-    m_Metadata:
-      m_Items: []
   - m_Id: 27476787830784
     m_Key: MainPlaymodeScene/Canvas/Death Screen/Play/Text (TMP)
     m_Metadata:
@@ -73,6 +69,18 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 28217619357696
     m_Key: mainMenu/Canvas/Options/Back Button/Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3675011930759168
+    m_Key: MainPlaymodeScene/Canvas/Death Screen/Again
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3675269653962752
+    m_Key: MainPlaymodeScene/Canvas/Death Screen/Current
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3675350373343232
+    m_Key: MainPlaymodeScene/Canvas/Death Screen/Previous
     m_Metadata:
       m_Items: []
   m_Metadata:

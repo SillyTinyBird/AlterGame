@@ -26,7 +26,7 @@ MonoBehaviour:
     m_Localized: Whoops...
     m_Metadata:
       m_Items: []
-  - m_Id: 27417606201344
+  - m_Id: 3675011930759168
     m_Localized: Try again?
     m_Metadata:
       m_Items: []
@@ -82,6 +82,14 @@ MonoBehaviour:
     m_Localized: 'Back
 
 '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3675269653962752
+    m_Localized: You got
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3675350373343232
+    m_Localized: Your High Score
     m_Metadata:
       m_Items: []
   references:

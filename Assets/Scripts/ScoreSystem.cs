@@ -12,10 +12,28 @@ public class ScoreSystem : MonoBehaviour
         _score = 0;
         StartCoroutine("ScoreCoroutine");
     }
+    public static int GetScore()
+    {
+        return _score;
+    }
     public static void AddPoints(int amount)
     {
         if (amount > 0)
             _score += amount;
+    }
+    /// <summary>
+    /// Returns <i>true</i> if New High Score, otherwise <i>false</i>.
+    /// </summary>
+    public static bool SaveScore()
+    {
+        string fileName = "scoreData.bin";
+        int score = int.Parse(FileIO.ReadString(fileName));
+        if (score < _score)
+        {
+            FileIO.WriteString(fileName, _score.ToString());
+            return true;
+        }
+        return false;
     }
     IEnumerator ScoreCoroutine()
     {
