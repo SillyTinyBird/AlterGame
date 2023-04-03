@@ -1,23 +1,29 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     private SwipeDetection _swipeDetection;
     private static int _layerID = 1;// 0 = lower; 1 = middle; 2 = upper.
-    [SerializeField] private float _layerDelta = 5f;
-    [SerializeField] private float _moveSpeed = 0.2f;
+    [Header("Jump Settings")]
     [SerializeField] private float _jumpSpeed = 0.2f;
     [SerializeField] private float _jumpHeight = 2.5f;
     [SerializeField] private AnimationCurve _jumpCurve;
+    [Header("Ascend/Descend Settings")]
+    [SerializeField] private float _layerDelta = 5f;//im keeping this only for reference
+    [SerializeField] private float _moveSpeed = 0.2f;
+    [SerializeField] float _interactedGameObjectXAxisOffset = 0;
+    [SerializeField] private float _ascendDescendHopHeight = 1.6f;//note that whenever this value changes, animation curve shoud be changed in inspector accordingly
+    [SerializeField] private AnimationCurve _extrapolationCurve;
+    [Header("Misc Settings")]
+    [SerializeField] private Animator _animarot;
     [SerializeField] private SpriteRenderer _spriteRendererSoWeCanChangeRenderOrderOnTheGo;
-    private bool _stairsNearby = false;
     private string _currentTag = "";
-    private bool _actionAllowed = false;// to prevent actions from accuring while another action is in motion, and also to esure that player can move only once per stair
-    private bool _isJumpingOrSliding = false;
-    [SerializeField] private Animator _animarot; 
+    private int _countOfCurrentlyColidedObjects = 0;
+    private bool _isPerformingAction = false;
+    
+    private Transform _interactedGameObjectTransform;
+    
     private void Awake()
     {
         _swipeDetection = SwipeDetection.Instance;
@@ -52,33 +58,98 @@ public class PlayerController : MonoBehaviour
     }
     private void SwipeUp()
     {
-        if (_isJumpingOrSliding)
+        if (_isPerformingAction)
             return;
-        if ((_layerID == 1 && _stairsNearby && _currentTag == "StairsUp" || _layerID == 0 && _stairsNearby) && _actionAllowed)
+        if ((_layerID == 1 && _currentTag == "StairsUp" || _layerID == 0) && _countOfCurrentlyColidedObjects > 0)
         {
-            StartCoroutine(MoveToCoroutine(new Vector2(transform.position.x, transform.position.y + _layerDelta), _moveSpeed));
+            //StartCoroutine(MoveToCoroutine(new Vector2(transform.position.x, transform.position.y + _layerDelta), _moveSpeed));
+            StartCoroutine(AscendAnimationCoroutine(_ascendDescendHopHeight, _moveSpeed));
+            Debug.Log("Ascend");
             _layerID += 1;
             UpdateSpriteLayer();
         }
         else
         {
-            StartCoroutine(JumpAction(_jumpHeight, _jumpSpeed));
+            StartCoroutine(JumpAnimationCoroutine(_jumpHeight, _jumpSpeed));
+            Debug.Log("Jump");
         }
     }
     private void SwipeDown()
     {
-        if (_isJumpingOrSliding)
+        if (_isPerformingAction)
             return;
-        if ((_layerID == 1 && _stairsNearby && _currentTag == "StairsDown" || _layerID == 2 && _stairsNearby) && _actionAllowed)
+        if ((_layerID == 1 && _currentTag == "StairsDown" || _layerID == 2) && _countOfCurrentlyColidedObjects > 0)
         {
-            StartCoroutine(MoveToCoroutine(new Vector2(transform.position.x, transform.position.y - _layerDelta), _moveSpeed));
+            StartCoroutine(DescendAnimationCoroutine(_ascendDescendHopHeight, _moveSpeed));
             _layerID -= 1;
             UpdateSpriteLayer();
         }
         else
         {
+            StartCoroutine(SlideAnimationCoroutine(_jumpHeight, _jumpSpeed));
+            /*if(_interactedGameObjectTransform != null)
+            {
+                StartCoroutine(AscendAnimationCoroutine(0,0));
+            }*/
+
             Debug.Log("slide");
         }
+    }
+    IEnumerator DescendAnimationCoroutine(float height, float moveSpeed)
+    {
+        _isPerformingAction = true;
+        _animarot.SetBool("IsJumping", true);
+        float time = 0;
+        Vector2 startPosition = transform.position;
+        Vector2 endPos = new(transform.position.x, transform.position.y + height);
+        while (time < moveSpeed)
+        {
+            transform.position = Vector2.LerpUnclamped(startPosition, endPos, _extrapolationCurve.Evaluate(time / moveSpeed));
+            time += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = new(startPosition.x, startPosition.y - _layerDelta);//to make sure we know exactly where we are
+        /*_animarot.SetBool("isRolling", true);
+        
+        Debug.Log(transform.position);
+        time = 0f;
+        while (time < moveSpeed/2)//wait for roll
+        {
+            time += Time.deltaTime;
+            yield return null;
+        }
+        _animarot.SetBool("IsJumping", false);
+        _animarot.SetBool("isRolling", false);*///in case i need cool roll again idk
+        _animarot.SetBool("IsJumping", false);
+        _isPerformingAction = false;
+    }
+    IEnumerator AscendAnimationCoroutine(float height, float moveSpeed)
+    {
+        _isPerformingAction = true;
+        _animarot.SetBool("IsJumping", true);
+        float startDistance = _interactedGameObjectTransform.position.x + _interactedGameObjectXAxisOffset - transform.position.x;
+        Vector2 startPosition = transform.position;
+        Vector2 endPos = new(transform.position.x, transform.position.y + (_jumpHeight * 0.75f));
+        float currentDistance;
+        do //cause i didnt wanted to calculate currentDistance more then once
+        {
+            currentDistance = _interactedGameObjectTransform.position.x + _interactedGameObjectXAxisOffset - transform.position.x;
+            transform.position = Vector2.Lerp(startPosition, endPos, _jumpCurve.Evaluate(currentDistance / startDistance));
+            yield return null;
+        } while (currentDistance > 0);//it should go to the negatives
+        transform.position = new(startPosition.x, startPosition.y + _layerDelta);//to ofset negated curve (im kinda reusing same animation curve here sooo yeah)
+        startPosition = transform.position;
+        endPos = new(transform.position.x, transform.position.y + height);
+        float time = 0;
+                while (time < moveSpeed)
+        {
+            transform.position = Vector2.LerpUnclamped(startPosition, endPos,  _extrapolationCurve.Evaluate(1 - (time / moveSpeed)));
+            time += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = startPosition;
+        _animarot.SetBool("IsJumping", false);
+        _isPerformingAction = false;
     }
     IEnumerator MoveToCoroutine(Vector2 endPos, float moveSpeed)
     {
@@ -91,25 +162,36 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
         transform.position = endPos;
-        _actionAllowed = false;
     } 
-    IEnumerator JumpAction(float height, float moveSpeed)
+    IEnumerator JumpAnimationCoroutine(float height, float moveSpeed)
     {
-        _isJumpingOrSliding = true;
+        _isPerformingAction = true;
         _animarot.SetBool("IsJumping", true);
         float time = 0;
         Vector2 startPosition = transform.position;
         Vector2 endPos = new(transform.position.x, transform.position.y + height);
         while (time < moveSpeed)
         {
-            
             transform.position = Vector2.Lerp(startPosition, endPos, _jumpCurve.Evaluate(time / moveSpeed));
             time += Time.deltaTime;
             yield return null;
         }
         transform.position = startPosition;
         _animarot.SetBool("IsJumping", false);
-        _isJumpingOrSliding = false;
+        _isPerformingAction = false;
+    }
+    IEnumerator SlideAnimationCoroutine(float height, float moveSpeed)
+    {
+        _isPerformingAction = true;
+        _animarot.SetBool("IsSliding", true);
+        float time = 0;
+        while (time < moveSpeed/2)
+        {
+            time += Time.deltaTime;
+            yield return null;
+        }
+        _animarot.SetBool("IsSliding", false);
+        _isPerformingAction = false;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -119,14 +201,12 @@ public class PlayerController : MonoBehaviour
             collision.gameObject.SetActive(false);
             return;//cause we didnt actually entered stairs zone, no need for anything else below
         }
-        _stairsNearby = true;
-        _actionAllowed = true;
+        _interactedGameObjectTransform = collision.transform;
+        _countOfCurrentlyColidedObjects++;
         _currentTag = collision.gameObject.tag;
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        _stairsNearby = false;
-        _actionAllowed = false;
-        _currentTag = "";
+        _countOfCurrentlyColidedObjects--;
     }
 }

@@ -1668,8 +1668,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c04cb73a5ed7cf3429a3216762795c97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _layerDelta: 2.2
-  _moveSpeed: 0.2
   _jumpSpeed: 0.8
   _jumpHeight: 2.35
   _jumpCurve:
@@ -1705,8 +1703,45 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _spriteRendererSoWeCanChangeRenderOrderOnTheGo: {fileID: 409828909}
+  _layerDelta: 2.2
+  _moveSpeed: 0.5
+  _interactedGameObjectXAxisOffset: 1.66
+  _ascendDescendHopHeight: 1.1
+  _extrapolationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 7.538444
+      outSlope: 7.538444
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.07289945
+    - serializedVersion: 3
+      time: 0.3
+      value: 1
+      inSlope: 0.35470238
+      outSlope: 0.35470238
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.19947508
+      outWeight: 0.99812526
+    - serializedVersion: 3
+      time: 1
+      value: -2
+      inSlope: -10.383654
+      outSlope: -10.383654
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.05061865
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   _animarot: {fileID: 409828912}
+  _spriteRendererSoWeCanChangeRenderOrderOnTheGo: {fileID: 409828909}
 --- !u!212 &409828909
 SpriteRenderer:
   m_ObjectHideFlags: 0

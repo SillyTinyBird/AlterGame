@@ -10,7 +10,7 @@ public class ScoreSystem : MonoBehaviour
     private void Awake()
     {
         _score = 0;
-        StartCoroutine("ScoreCoroutine");
+        StartCoroutine(ScoreCoroutine());
     }
     public static int GetScore()
     {

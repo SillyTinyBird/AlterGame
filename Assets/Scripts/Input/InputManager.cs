@@ -9,11 +9,9 @@ public class InputManager : Singleton<InputManager>
     public delegate void EndTouchEvent(Vector2 position, float time);
     public event EndTouchEvent OnEndTouch;
     private Controls _controls;
-    private Camera _camera;
     private void Awake()
     {
         _controls = new();
-        _camera = Camera.main;
     }
 
     private void OnEnable() => _controls.Enable();
@@ -25,16 +23,10 @@ public class InputManager : Singleton<InputManager>
     }
     private void StartTouch(InputAction.CallbackContext context)
     {
-        if (OnStartTouch != null)
-        {
-            OnStartTouch(CameraToWorldPosition.ScreenToWorld(_controls.Touch.Position.ReadValue<Vector2>()),(float)context.startTime);
-        }
+        OnStartTouch?.Invoke(CameraToWorldPosition.ScreenToWorld(_controls.Touch.Position.ReadValue<Vector2>()), (float)context.startTime);
     }
     private void EndTouch(InputAction.CallbackContext context)
     {
-        if (OnEndTouch != null)
-        {
-            OnEndTouch(CameraToWorldPosition.ScreenToWorld(_controls.Touch.Position.ReadValue<Vector2>()), (float)context.time);
-        }
+        OnEndTouch?.Invoke(CameraToWorldPosition.ScreenToWorld(_controls.Touch.Position.ReadValue<Vector2>()), (float)context.time);
     }
 }
