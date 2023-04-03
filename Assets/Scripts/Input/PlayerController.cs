@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _jumpSpeed = 0.2f;
     [SerializeField] private float _jumpHeight = 2.5f;
     [SerializeField] private AnimationCurve _jumpCurve;
+    [Header("Slide Settings")]
+    [SerializeField] private float _slideSpeed = 0.2f;
     [Header("Ascend/Descend Settings")]
     [SerializeField] private float _layerDelta = 5f;//im keeping this only for reference
     [SerializeField] private float _moveSpeed = 0.2f;
@@ -86,7 +88,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            StartCoroutine(SlideAnimationCoroutine(_jumpHeight, _jumpSpeed));
+            StartCoroutine(SlideAnimationCoroutine(0, _slideSpeed));
             /*if(_interactedGameObjectTransform != null)
             {
                 StartCoroutine(AscendAnimationCoroutine(0,0));
@@ -180,12 +182,12 @@ public class PlayerController : MonoBehaviour
         _animarot.SetBool("IsJumping", false);
         _isPerformingAction = false;
     }
-    IEnumerator SlideAnimationCoroutine(float height, float moveSpeed)
+    IEnumerator SlideAnimationCoroutine(float height, float moveSpeed)//heads up: animation also changes boxcolider size and offset
     {
         _isPerformingAction = true;
         _animarot.SetBool("IsSliding", true);
         float time = 0;
-        while (time < moveSpeed/2)
+        while (time < moveSpeed)
         {
             time += Time.deltaTime;
             yield return null;
