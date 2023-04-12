@@ -10,18 +10,27 @@ public class WaveFunctionSolver : MonoBehaviour
     private int _sizeX = 0;
     private int _sizeY = 0;
     private bool _isSolved = false;
-    private readonly System.Random r = new System.Random();
+    private readonly System.Random r = new();
     private List<Prototype> error;
-    public Prototype[,] GetWaveFunction()
+    public IEnumerator GetWaveFunction()
     {
         if(!_isSolved)
         {
-            Solve();
+            yield return StartCoroutine(Solve());
         }
-        return RemoveLists();
+    }
+    public Prototype[,] GetWaveFunctionSolved()
+    {
+        if (_isSolved)
+        {
+            return RemoveLists();
+        }
+        throw new Exception(
+            "GetWaveFunctionSolved() was terminated because Wave Function was not solved beforhand (use GetWaveFunction() before calling this method)");
+
     }
     public Tuple<int,int> GetDimensions() => Tuple.Create(_sizeX, _sizeY);
-    public void Initialize(int sizeX, int sizeY)
+    public IEnumerator Initialize(int sizeX, int sizeY)
     {
         _sizeX = sizeX;
         _sizeY = sizeY;
@@ -34,9 +43,10 @@ public class WaveFunctionSolver : MonoBehaviour
             }
         }
         error = new List<Prototype>() { _waveFunction[0,0][0]};
+        yield return null;
         _isSolved = false;
     }
-    public void Initialize(int sizeX, int sizeY, Prototype[] firstLine)
+    public IEnumerator Initialize(int sizeX, int sizeY, Prototype[] firstLine)
     {
         _sizeX = sizeX;
         _sizeY = sizeY;
@@ -56,14 +66,23 @@ public class WaveFunctionSolver : MonoBehaviour
             }
         }
         error = new List<Prototype>() { _waveFunction[0, 0][0] };//needs a change
-        affectedCoords.ForEach(x => { Propagate(x); });
+        yield return StartCoroutine(PlacePrototypesInFirstColumn(affectedCoords));
+        //affectedCoords.ForEach(x => { StartCoroutine(Propagate(x)); });
         _isSolved = false;
     }
-    private void Solve()
+    private IEnumerator PlacePrototypesInFirstColumn(List<Tuple<int, int>> list)
+    {
+        foreach (var x in list)
+        {
+            yield return StartCoroutine(Propagate(x,false));
+        }
+        //list.ForEach(x => { });
+    }
+    private IEnumerator Solve()
     {
         while (!IsColapsed())
         {
-            Iterate();
+            yield return StartCoroutine(Iterate());
         }
         _isSolved = true;
     }
@@ -81,11 +100,11 @@ public class WaveFunctionSolver : MonoBehaviour
         }
         return true;
     }
-    private void Iterate()
+    private IEnumerator Iterate()
     {
         Tuple<int, int> coords = GetMinCoords();
-        Colapse(coords);
-        Propagate(coords);
+        yield return StartCoroutine(Colapse(coords));
+        yield return StartCoroutine(Propagate(coords));
     }
     private Tuple<int, int> GetMinCoords()//its a mess but it is what it is i guess
     {
@@ -122,14 +141,15 @@ public class WaveFunctionSolver : MonoBehaviour
         }
         return Tuple.Create(x, y);
     }
-    private void Colapse(Tuple<int, int> at)
+    private IEnumerator Colapse(Tuple<int, int> at)
     {
         //int index = r.Next(0, _waveFunction[at.Item1, at.Item2].Count);
         int index = GetRandomWeightedIndex(_waveFunction[at.Item1, at.Item2]);
         //int index = UnityEngine.Random.Range(0,_waveFunction[at.Item1, at.Item2].Count - 1);//if you would like to add weights in the future, add them here
         _waveFunction[at.Item1, at.Item2] = new List<Prototype>() { _waveFunction[at.Item1, at.Item2][index] };//idk if this gonna work
+        yield return null;
     }
-    private void Propagate(Tuple<int, int> at)
+    private IEnumerator Propagate(Tuple<int, int> at, bool makeQuick = true)//makeQuick allows for more frequent yield return null; calls
     {
         List<Tuple<int, int>> affectedCoords = new() {at};
         while(affectedCoords.Count > 0)
@@ -144,7 +164,7 @@ public class WaveFunctionSolver : MonoBehaviour
                     continue;
                 }
                 List<int> validPrototypesPerDirection = GetValidNeighborsSum(currentCoord,neighbor);
-                List<Prototype> buffer = new List<Prototype>(_waveFunction[neighbor.Item1, neighbor.Item2]);
+                List<Prototype> buffer = new(_waveFunction[neighbor.Item1, neighbor.Item2]);
                 foreach (Prototype possibleState in _waveFunction[neighbor.Item1, neighbor.Item2])
                 {
                     int curId = possibleState.GetId();//_waveFunction[currentCoord.Item1, currentCoord.Item2][0].GetId();
@@ -160,7 +180,7 @@ public class WaveFunctionSolver : MonoBehaviour
                 
                 if (buffer.Count == 0)
                 {
-                    _waveFunction[neighbor.Item1, neighbor.Item2] = error;
+                    _waveFunction[neighbor.Item1, neighbor.Item2] = error;//need better error handeling
                     Debug.Log("errpr00");
                 }
                 else
@@ -168,9 +188,20 @@ public class WaveFunctionSolver : MonoBehaviour
                     _waveFunction[neighbor.Item1, neighbor.Item2] = buffer;
                 }
             }
+            if (!makeQuick)
+            {
+                yield return null;
+            }
+        }
+        if (makeQuick)
+        {
+            yield return null;
         }
     }
-
+    /// <summary>
+    /// extracts prototypes from lists
+    /// </summary>
+    /// <returns>compleet chunk</returns>
     private Prototype[,] RemoveLists()
     {
         Prototype[,] buf = new Prototype[_sizeX, _sizeY];
@@ -178,14 +209,14 @@ public class WaveFunctionSolver : MonoBehaviour
         {
             for (int j = 0; j < _sizeY; j++)
             {
-                buf[i, j] = _waveFunction[i, j][0];//error somwhere still
+                buf[i, j] = _waveFunction[i, j][0];
             }
         }
         return buf;
     }
     private List<Tuple<int, int>> GetDirectionsAtCoords(Tuple<int, int> at)
     {
-        List<Tuple<int, int>> coords = new List<Tuple<int, int>>();
+        List<Tuple<int, int>> coords = new();
         if(at.Item1 > 0)
         {
             coords.Add(new Tuple<int, int>(at.Item1 - 1, at.Item2));
@@ -206,7 +237,7 @@ public class WaveFunctionSolver : MonoBehaviour
     }
     private List<int> GetValidNeighborsSum(Tuple<int, int> at, Tuple<int, int> to)
     {
-        List<int> sum = new List<int>();
+        List<int> sum = new();
         Tuple<int, int> direction = Tuple.Create(to.Item1 - at.Item1, to.Item2 - at.Item2);
         int direectionIndex = GetDirectionIndexFromTuple(direction);
         foreach(Prototype item in _waveFunction[at.Item1, at.Item2])

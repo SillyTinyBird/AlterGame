@@ -5,6 +5,7 @@ public class PlaymodeInterfaceScript : MonoBehaviour
 {
     [SerializeField] private GameObject _deathScreenGroup;
     [SerializeField] private GameObject _overlayGroup;
+    [SerializeField] private GameObject _loadingGroup;
     [SerializeField] private TextMeshProUGUI _curScore;
     [SerializeField] private TextMeshProUGUI _newScore;
     public void SetPause(bool isPaused)
@@ -17,6 +18,15 @@ public class PlaymodeInterfaceScript : MonoBehaviour
         {
             Time.timeScale = 1;
         }
+    }
+    private void Start()
+    {
+        SetPause(true);
+    }
+    public void LoadingCompleetAction()
+    {
+        _loadingGroup.SetActive(false);
+        SetPause(false);
     }
     public void FailActions()
     {

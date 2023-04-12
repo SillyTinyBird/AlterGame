@@ -6,6 +6,7 @@ public class WaveFunctionRenderer : MonoBehaviour
 {
     private Prototype[,] _data;
     [SerializeField] private WaveFunctionSolver _solver;
+    [SerializeField] private PlaymodeInterfaceScript _pauseManager;
     private int _xDelta =  5;
     private int _yDelta = 5;
     public GameObject parent;
@@ -13,21 +14,31 @@ public class WaveFunctionRenderer : MonoBehaviour
     {
         if (parent != null)
         {
-            while(parent.transform.childCount > 0)
+            int i = 0;
+            while(i < parent.transform.childCount)
             {
-                DestroyImmediate(parent.transform.GetChild(0).gameObject);
+                Destroy(parent.transform.GetChild(i).gameObject);
+                i++;
             }
         }
     }
-    public void DrawWaveFunction(int sizeX, int sizeY, int xDelta, int yDelta)
+    public IEnumerator DrawWaveFunction(int sizeX, int sizeY, int xDelta, int yDelta, bool firstCall = false)
     {
-        Initialize(sizeX, sizeY);
+        yield return StartCoroutine(Initialize(sizeX, sizeY));
         Render(xDelta, yDelta);
+        if (_pauseManager != null && firstCall)
+        {
+            _pauseManager.LoadingCompleetAction();
+        }
     }
-    public void DrawWaveFunction(int sizeX, int sizeY, int xDelta, int yDelta, Prototype[] firstLine)
+    public IEnumerator DrawWaveFunction(int sizeX, int sizeY, int xDelta, int yDelta, Prototype[] firstLine,bool firstCall = false)
     {
-        Initialize(sizeX, sizeY, firstLine);
+        yield return StartCoroutine(Initialize(sizeX, sizeY, firstLine));
         Render(xDelta, yDelta);
+        if(_pauseManager != null && firstCall)
+        {
+            _pauseManager.LoadingCompleetAction();
+        }
     }
     public Prototype[] GetLastLineY()
     {
@@ -48,15 +59,17 @@ public class WaveFunctionRenderer : MonoBehaviour
         }
         DrawWaveFunction(buffer);
     }*/
-    private void Initialize(int sizeX, int sizeY)
+    private IEnumerator Initialize(int sizeX, int sizeY)
     {
         _solver.Initialize(sizeX, sizeY);
-        _data =  _solver.GetWaveFunction();
+        yield return StartCoroutine(_solver.GetWaveFunction());
+        _data = _solver.GetWaveFunctionSolved();
     }
-    private void Initialize(int sizeX, int sizeY, Prototype[] firstLine)
+    private IEnumerator Initialize(int sizeX, int sizeY, Prototype[] firstLine)
     {
-        _solver.Initialize(sizeX, sizeY, firstLine);
-        _data = _solver.GetWaveFunction();
+        yield return StartCoroutine(_solver.Initialize(sizeX, sizeY, firstLine));
+        yield return StartCoroutine(_solver.GetWaveFunction());
+        _data = _solver.GetWaveFunctionSolved();
     }
     private void Render(int xDelta, int yDelta)
     {

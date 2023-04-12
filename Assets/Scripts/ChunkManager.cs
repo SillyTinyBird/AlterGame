@@ -35,14 +35,14 @@ public class ChunkManager : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (_clearHitbox.transform.position.x <= transform.position.x && 
-            _clearHitbox.transform.position.x +_xDelta >= transform.position.x && _nextReady == true)
+        if (_clearHitbox.transform.position.x <= transform.position.x && //its a mess but basicaly we are cheking if we past the object ->
+            _clearHitbox.transform.position.x +_xDelta >= transform.position.x && _nextReady == true)// -> that marks "need to delete/generate wave function" zone
         {
             ClearLast();
             _nextCleared = true;
             _nextReady = false;
         }
-        if (_nextHitbox.transform.position.x <= transform.position.x && 
+        if (_nextHitbox.transform.position.x <= transform.position.x && //same here
             _nextHitbox.transform.position.x + _xDelta >= transform.position.x && _nextCleared == true)
         {
             DrawNext();
@@ -52,10 +52,10 @@ public class ChunkManager : MonoBehaviour
     }
     public void DrawFirst()
     {
-        _chunk1.DrawWaveFunction(_sizeX, _sizeY, _xDelta, _yDelta,new Prototype[] {
+        StartCoroutine(_chunk1.DrawWaveFunction(_sizeX, _sizeY, _xDelta, _yDelta,new Prototype[] {
             _dictionary.GetPrototypeById(_firstLaneIds[0]),
             _dictionary.GetPrototypeById(_firstLaneIds[1]), 
-            _dictionary.GetPrototypeById(_firstLaneIds[2])});
+            _dictionary.GetPrototypeById(_firstLaneIds[2])},true));
         _currentChunkId = 1;
     }
     public void ClearLast()
@@ -78,14 +78,14 @@ public class ChunkManager : MonoBehaviour
         {
             case 1:
                 _chunk2Object.transform.position = new Vector2(_chunk1Object.transform.position.x - _scrollAmount + (_sizeX - 1) * _xDelta, _chunk1Object.transform.position.y);
-                _chunk2.DrawWaveFunction(_sizeX, _sizeY, _xDelta, _yDelta,_chunk1.GetLastLineY());
+                StartCoroutine(_chunk2.DrawWaveFunction(_sizeX, _sizeY, _xDelta, _yDelta,_chunk1.GetLastLineY()));
                 _currentChunkId = 2;
                 _clearHitbox.transform.position = new Vector2(_chunk2.transform.position.x - _scrollAmount + _sizeX * _clearPositionRatio * _xDelta, _clearHitbox.transform.position.y);
                 _nextHitbox.transform.position = new Vector2(_chunk2.transform.position.x - _scrollAmount + _sizeX * _nexxtPositionRatio * _xDelta, _clearHitbox.transform.position.y);
                 break;
             case 2:
                 _chunk1Object.transform.position = new Vector2(_chunk2Object.transform.position.x - _scrollAmount + (_sizeX - 1) * _xDelta, _chunk2Object.transform.position.y);
-                _chunk1.DrawWaveFunction(_sizeX, _sizeY, _xDelta, _yDelta, _chunk2.GetLastLineY());
+                StartCoroutine(_chunk1.DrawWaveFunction(_sizeX, _sizeY, _xDelta, _yDelta, _chunk2.GetLastLineY()));
                 _currentChunkId = 1;
                 _clearHitbox.transform.position = new Vector2(_chunk1.transform.position.x - _scrollAmount + _sizeX * _clearPositionRatio * _xDelta, _clearHitbox.transform.position.y);
                 _nextHitbox.transform.position = new Vector2(_chunk1.transform.position.x - _scrollAmount + _sizeX * _nexxtPositionRatio * _xDelta, _clearHitbox.transform.position.y);
