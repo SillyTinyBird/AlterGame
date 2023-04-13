@@ -12,6 +12,8 @@ public class WaveFunctionSolver : MonoBehaviour
     private bool _isSolved = false;
     private readonly System.Random r = new();
     private List<Prototype> error;
+    private static List<List<Prototype>> _columnForReplasingInCaseOfErrors = new();
+
     public IEnumerator GetWaveFunction()
     {
         if(!_isSolved)
@@ -60,6 +62,10 @@ public class WaveFunctionSolver : MonoBehaviour
                 {
                     _waveFunction[i, j] = new List<Prototype>() { firstLine[j] };
                     affectedCoords.Add(Tuple.Create(i, j));
+                    if(_columnForReplasingInCaseOfErrors.Count < sizeY)//saving only one column
+                    {
+                        _columnForReplasingInCaseOfErrors.Add(new List<Prototype>() { firstLine[j] });
+                    }
                     continue;
                 }
                 _waveFunction[i, j] = new List<Prototype>(_dictionary.GetPrototypes());
@@ -180,7 +186,11 @@ public class WaveFunctionSolver : MonoBehaviour
                 
                 if (buffer.Count == 0)
                 {
-                    _waveFunction[neighbor.Item1, neighbor.Item2] = error;//need better error handeling
+                    //_waveFunction[neighbor.Item1, neighbor.Item2] = error;//need better error handeling
+                    for (int i = 0;i < _sizeY; i++)//goes through full column, thus keeping structure intact
+                    {
+                        _waveFunction[neighbor.Item1, i] = _columnForReplasingInCaseOfErrors[i];//we got better handeling
+                    }
                     Debug.Log("errpr00");
                 }
                 else
