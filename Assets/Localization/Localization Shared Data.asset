@@ -83,6 +83,10 @@ MonoBehaviour:
     m_Key: MainPlaymodeScene/Canvas/Death Screen/Previous
     m_Metadata:
       m_Items: []
+  - m_Id: 9836113500676096
+    m_Key: MainPlaymodeScene/Canvas/Loading/Text (TMP)
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

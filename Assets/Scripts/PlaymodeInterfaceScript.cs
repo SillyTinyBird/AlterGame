@@ -8,6 +8,8 @@ public class PlaymodeInterfaceScript : MonoBehaviour
     [SerializeField] private GameObject _loadingGroup;
     [SerializeField] private TextMeshProUGUI _curScore;
     [SerializeField] private TextMeshProUGUI _newScore;
+    [SerializeField] private TextMeshProUGUI _deathMessage;
+    [SerializeField] private ObstacleScript _scriptWeGetDeathMessageFrom;
     public void SetPause(bool isPaused)
     {
         if (isPaused)
@@ -39,6 +41,7 @@ public class PlaymodeInterfaceScript : MonoBehaviour
             }
             _curScore.SetText(ScoreSystem.GetScore().ToString("000000"));
             _newScore.SetText(FileIO.ReadInt("scoreData.bin").ToString("000000"));//yeah not so clean i guess
+            _deathMessage.SetText(_scriptWeGetDeathMessageFrom._deathMessage);
             _deathScreenGroup.SetActive(true);
             _overlayGroup.SetActive(false);
         }

@@ -4,7 +4,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private SwipeDetection _swipeDetection;
-    private static int _layerID = 1;// 0 = lower; 1 = middle; 2 = upper.
+    /// <summary>
+    /// 0 = lower; 1 = middle; 2 = upper.
+    /// </summary>
+    private static int _layerID = 1;
     [Header("Jump Settings")]
     [SerializeField] private float _jumpSpeed = 0.2f;
     [SerializeField] private float _jumpHeight = 2.5f;
@@ -32,6 +35,9 @@ public class PlayerController : MonoBehaviour
         _layerID = 1;//we start on the middle layer
         UpdateSpriteLayer();
     }
+    /// <summary>
+    /// 0 = lower; 1 = middle; 2 = upper.
+    /// </summary>
     public static int LayerID => _layerID;
     private void OnEnable()
     {

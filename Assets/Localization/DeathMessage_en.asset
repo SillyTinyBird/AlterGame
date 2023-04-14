@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: DeathMessage_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 6cc84c04b4eca2549b12e4a14ca59f27, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 5422931877888
+    m_Localized: You fell between air conditioning units and sprained your ankle!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7118164697088
+    m_Localized: You fell into the gap between the buildings!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7483362746368
+    m_Localized: You have fallen down from the scaffolding!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7826695888896
+    m_Localized: You hit your head on the industrial equipment while running on the
+      ACU! You are dead!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8478272626688
+    m_Localized: You couldn't get around the obstacle left on the roof! It was painful...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8888727216128
+    m_Localized: You couldn't find your way around the obstacle on the narrow scaffolding
+      in time
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []
