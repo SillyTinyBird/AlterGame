@@ -1408,7 +1408,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 64.85
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2008,11 +2008,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 409828907}
-  - component: {fileID: 409828908}
-  - component: {fileID: 409828909}
   - component: {fileID: 409828910}
-  - component: {fileID: 409828911}
+  - component: {fileID: 409828909}
   - component: {fileID: 409828912}
+  - component: {fileID: 409828908}
+  - component: {fileID: 409828911}
+  - component: {fileID: 409828913}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2120,7 +2121,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _animarot: {fileID: 409828912}
+  _animator: {fileID: 409828912}
   _spriteRendererSoWeCanChangeRenderOrderOnTheGo: {fileID: 409828909}
 --- !u!212 &409828909
 SpriteRenderer:
@@ -2212,65 +2213,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c72be05e81b765a44929f2c303c2143d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerController: {fileID: 409828908}
   _failManager: {fileID: 1753540965}
-  _deathMessage: 
-  _fallUpper:
-    m_TableReference:
-      m_TableCollectionName: GUID:6cc84c04b4eca2549b12e4a14ca59f27
-    m_TableEntryReference:
-      m_KeyId: 5422931877888
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  _fallMiddle:
-    m_TableReference:
-      m_TableCollectionName: GUID:6cc84c04b4eca2549b12e4a14ca59f27
-    m_TableEntryReference:
-      m_KeyId: 7118164697088
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  _fallLower:
-    m_TableReference:
-      m_TableCollectionName: GUID:6cc84c04b4eca2549b12e4a14ca59f27
-    m_TableEntryReference:
-      m_KeyId: 7483362746368
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  _bonkUpper:
-    m_TableReference:
-      m_TableCollectionName: GUID:6cc84c04b4eca2549b12e4a14ca59f27
-    m_TableEntryReference:
-      m_KeyId: 7826695888896
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  _bonkMiddle:
-    m_TableReference:
-      m_TableCollectionName: GUID:6cc84c04b4eca2549b12e4a14ca59f27
-    m_TableEntryReference:
-      m_KeyId: 8478272626688
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  _bonkLower:
-    m_TableReference:
-      m_TableCollectionName: GUID:6cc84c04b4eca2549b12e4a14ca59f27
-    m_TableEntryReference:
-      m_KeyId: 8888727216128
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  references:
-    version: 2
-    RefIds: []
 --- !u!95 &409828912
 Animator:
   serializedVersion: 5
@@ -2292,6 +2236,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &409828913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 409828906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd00c1a6379535f4d8d807db2298ebcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerController: {fileID: 409828908}
+  _delayInSeconds: 0.3
+  _volume: 0.5
 --- !u!1 &418002213
 GameObject:
   m_ObjectHideFlags: 0
@@ -6747,6 +6706,7 @@ GameObject:
   - component: {fileID: 1753540960}
   - component: {fileID: 1753540965}
   - component: {fileID: 1753540964}
+  - component: {fileID: 1753540966}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -6870,7 +6830,77 @@ MonoBehaviour:
   _curScore: {fileID: 923913712}
   _newScore: {fileID: 1332884105}
   _deathMessage: {fileID: 1100810220}
-  _scriptWeGetDeathMessageFrom: {fileID: 409828911}
+  _scriptWeGetDeathMessageFrom: {fileID: 1753540966}
+--- !u!114 &1753540966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753540959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d65f019962ccfb84d99b66c699dfdff4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _obstacleScript: {fileID: 409828911}
+  _fallUpper:
+    m_TableReference:
+      m_TableCollectionName: GUID:6cc84c04b4eca2549b12e4a14ca59f27
+    m_TableEntryReference:
+      m_KeyId: 5422931877888
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  _fallMiddle:
+    m_TableReference:
+      m_TableCollectionName: GUID:6cc84c04b4eca2549b12e4a14ca59f27
+    m_TableEntryReference:
+      m_KeyId: 7118164697088
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  _fallLower:
+    m_TableReference:
+      m_TableCollectionName: GUID:6cc84c04b4eca2549b12e4a14ca59f27
+    m_TableEntryReference:
+      m_KeyId: 7483362746368
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  _bonkUpper:
+    m_TableReference:
+      m_TableCollectionName: GUID:6cc84c04b4eca2549b12e4a14ca59f27
+    m_TableEntryReference:
+      m_KeyId: 7826695888896
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  _bonkMiddle:
+    m_TableReference:
+      m_TableCollectionName: GUID:6cc84c04b4eca2549b12e4a14ca59f27
+    m_TableEntryReference:
+      m_KeyId: 8478272626688
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  _bonkLower:
+    m_TableReference:
+      m_TableCollectionName: GUID:6cc84c04b4eca2549b12e4a14ca59f27
+    m_TableEntryReference:
+      m_KeyId: 8888727216128
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1811092490
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,4 +26,15 @@ public class AudioManager : MonoBehaviour
     {
         return transform.GetChild(1).GetComponent<AudioSource>();
     }
+    public static void PlaySFX(AudioClip clip, float volume)
+    {
+        AudioSource source = instance.GetSFXAudioSource();
+        source.PlayOneShot(clip, volume);
+    }
+    public static void PlayMusic(AudioClip clip)
+    {
+        AudioSource source = instance.GetMusicAudioSource();
+        source.clip = clip;
+        source.Play();
+    }
 }

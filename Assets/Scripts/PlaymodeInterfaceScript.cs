@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+[DefaultExecutionOrder(-1)]
 public class PlaymodeInterfaceScript : MonoBehaviour
 {
     [SerializeField] private GameObject _deathScreenGroup;
@@ -9,7 +10,7 @@ public class PlaymodeInterfaceScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _curScore;
     [SerializeField] private TextMeshProUGUI _newScore;
     [SerializeField] private TextMeshProUGUI _deathMessage;
-    [SerializeField] private ObstacleScript _scriptWeGetDeathMessageFrom;
+    [SerializeField] private DeathMessageScript _scriptWeGetDeathMessageFrom;
     public void SetPause(bool isPaused)
     {
         if (isPaused)
@@ -21,7 +22,7 @@ public class PlaymodeInterfaceScript : MonoBehaviour
             Time.timeScale = 1;
         }
     }
-    private void Start()
+    private void Awake()
     {
         SetPause(true);
     }
@@ -41,7 +42,7 @@ public class PlaymodeInterfaceScript : MonoBehaviour
             }
             _curScore.SetText(ScoreSystem.GetScore().ToString("000000"));
             _newScore.SetText(FileIO.ReadInt("scoreData.bin").ToString("000000"));//yeah not so clean i guess
-            _deathMessage.SetText(_scriptWeGetDeathMessageFrom._deathMessage);
+            _deathMessage.SetText(_scriptWeGetDeathMessageFrom.GetDeathMessage());
             _deathScreenGroup.SetActive(true);
             _overlayGroup.SetActive(false);
         }

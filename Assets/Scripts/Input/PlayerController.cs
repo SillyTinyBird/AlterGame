@@ -3,11 +3,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private SwipeDetection _swipeDetection;
-    /// <summary>
-    /// 0 = lower; 1 = middle; 2 = upper.
-    /// </summary>
-    private static int _layerID = 1;
     [Header("Jump Settings")]
     [SerializeField] private float _jumpSpeed = 0.2f;
     [SerializeField] private float _jumpHeight = 2.5f;
@@ -21,12 +16,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _ascendDescendHopHeight = 1.6f;//note that whenever this value changes, animation curve shoud be changed in inspector accordingly
     [SerializeField] private AnimationCurve _extrapolationCurve;
     [Header("Misc Settings")]
-    [SerializeField] private Animator _animarot;
+    [SerializeField] private Animator _animator;
     [SerializeField] private SpriteRenderer _spriteRendererSoWeCanChangeRenderOrderOnTheGo;
+
+    private SwipeDetection _swipeDetection;
+    /// <summary>
+    /// 0 = lower; 1 = middle; 2 = upper.
+    /// </summary>
+    private int _layerID = 1;
+    private bool _isPerformingAction = false;//its all static cause there will be only one instance attached to player anyway
+
     private string _currentTag = "";
     private int _countOfCurrentlyColidedObjects = 0;
-    private bool _isPerformingAction = false;
-    
     private Transform _interactedGameObjectTransform;
     
     private void Awake()
@@ -34,11 +35,16 @@ public class PlayerController : MonoBehaviour
         _swipeDetection = SwipeDetection.Instance;
         _layerID = 1;//we start on the middle layer
         UpdateSpriteLayer();
+        _isPerformingAction = false;
     }
     /// <summary>
     /// 0 = lower; 1 = middle; 2 = upper.
     /// </summary>
-    public static int LayerID => _layerID;
+    public int LayerID => _layerID;
+    /// <summary>
+    /// Returns bool of wether player is currently jumping, sliding, or changing layers.
+    /// </summary>
+    public bool IsActionBeeingPerformed => _isPerformingAction;
     private void OnEnable()
     {
         _swipeDetection.OnSwipeUp += SwipeUp;
@@ -106,7 +112,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator DescendAnimationCoroutine(float height, float moveSpeed)
     {
         _isPerformingAction = true;
-        _animarot.SetBool("IsJumping", true);
+        _animator.SetBool("IsJumping", true);
         float time = 0;
         Vector2 startPosition = transform.position;
         Vector2 endPos = new(transform.position.x, transform.position.y + height);
@@ -128,13 +134,13 @@ public class PlayerController : MonoBehaviour
         }
         _animarot.SetBool("IsJumping", false);
         _animarot.SetBool("isRolling", false);*///in case i need cool roll again idk
-        _animarot.SetBool("IsJumping", false);
+        _animator.SetBool("IsJumping", false);
         _isPerformingAction = false;
     }
     IEnumerator AscendAnimationCoroutine(float height, float moveSpeed)
     {
         _isPerformingAction = true;
-        _animarot.SetBool("IsJumping", true);
+        _animator.SetBool("IsJumping", true);
         float startDistance = _interactedGameObjectTransform.position.x + _interactedGameObjectXAxisOffset - transform.position.x;
         Vector2 startPosition = transform.position;
         Vector2 endPos = new(transform.position.x, transform.position.y + (_jumpHeight * 0.75f));
@@ -156,25 +162,13 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
         transform.position = startPosition;
-        _animarot.SetBool("IsJumping", false);
+        _animator.SetBool("IsJumping", false);
         _isPerformingAction = false;
     }
-    IEnumerator MoveToCoroutine(Vector2 endPos, float moveSpeed)
-    {
-        float time = 0;
-        Vector2 startPosition = transform.position;
-        while (time < moveSpeed)
-        {
-            transform.position = Vector2.Lerp(startPosition, endPos, time / moveSpeed);
-            time += Time.deltaTime;
-            yield return null;
-        }
-        transform.position = endPos;
-    } 
     IEnumerator JumpAnimationCoroutine(float height, float moveSpeed)
     {
         _isPerformingAction = true;
-        _animarot.SetBool("IsJumping", true);
+        _animator.SetBool("IsJumping", true);
         float time = 0;
         Vector2 startPosition = transform.position;
         Vector2 endPos = new(transform.position.x, transform.position.y + height);
@@ -185,20 +179,20 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
         transform.position = startPosition;
-        _animarot.SetBool("IsJumping", false);
+        _animator.SetBool("IsJumping", false);
         _isPerformingAction = false;
     }
     IEnumerator SlideAnimationCoroutine(float height, float moveSpeed)//heads up: animation also changes boxcolider size and offset
     {
         _isPerformingAction = true;
-        _animarot.SetBool("IsSliding", true);
+        _animator.SetBool("IsSliding", true);
         float time = 0;
         while (time < moveSpeed)
         {
             time += Time.deltaTime;
             yield return null;
         }
-        _animarot.SetBool("IsSliding", false);
+        _animator.SetBool("IsSliding", false);
         _isPerformingAction = false;
     }
     private void OnTriggerEnter2D(Collider2D collision)
