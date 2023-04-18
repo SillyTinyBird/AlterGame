@@ -2014,6 +2014,7 @@ GameObject:
   - component: {fileID: 409828908}
   - component: {fileID: 409828911}
   - component: {fileID: 409828913}
+  - component: {fileID: 409828914}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2123,6 +2124,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _animator: {fileID: 409828912}
   _spriteRendererSoWeCanChangeRenderOrderOnTheGo: {fileID: 409828909}
+  _SFXscript: {fileID: 409828914}
 --- !u!212 &409828909
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2250,6 +2252,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerController: {fileID: 409828908}
   _delayInSeconds: 0.3
+  _volume: 0.5
+--- !u!114 &409828914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 409828906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c11acf8d7f4abb4697e3f49f2ae0659, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _metalJump: {fileID: 8300000, guid: 3a7f8e5cd35cfbc4da00d473b135aed9, type: 3}
+  _gravelJump: {fileID: 8300000, guid: 72c8dc4a12b00874ca8a9f96c1dc02dd, type: 3}
+  _woodJump: {fileID: 8300000, guid: a770bbeb8cf624a40b94e84304657fdf, type: 3}
+  _trampoline: {fileID: 8300000, guid: f1ddedc9f21012a449fa55aa4a245ae8, type: 3}
+  _slide: {fileID: 8300000, guid: 48ec25ac8d85a4f4abe164bcf33dea70, type: 3}
   _volume: 0.5
 --- !u!1 &418002213
 GameObject:

@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [Header("Misc Settings")]
     [SerializeField] private Animator _animator;
     [SerializeField] private SpriteRenderer _spriteRendererSoWeCanChangeRenderOrderOnTheGo;
+    [SerializeField] private LayerDependantSFXScript _SFXscript;
 
     private SwipeDetection _swipeDetection;
     /// <summary>
@@ -113,6 +114,7 @@ public class PlayerController : MonoBehaviour
     {
         _isPerformingAction = true;
         _animator.SetBool("IsJumping", true);
+        _SFXscript.PlayDescendStartSFX(_layerID);
         float time = 0;
         Vector2 startPosition = transform.position;
         Vector2 endPos = new(transform.position.x, transform.position.y + height);
@@ -134,6 +136,7 @@ public class PlayerController : MonoBehaviour
         }
         _animarot.SetBool("IsJumping", false);
         _animarot.SetBool("isRolling", false);*///in case i need cool roll again idk
+        _SFXscript.PlayDescendEndSFX(_layerID);
         _animator.SetBool("IsJumping", false);
         _isPerformingAction = false;
     }
@@ -141,6 +144,7 @@ public class PlayerController : MonoBehaviour
     {
         _isPerformingAction = true;
         _animator.SetBool("IsJumping", true);
+        _SFXscript.PlayAscendStartSFX(_layerID);
         float startDistance = _interactedGameObjectTransform.position.x + _interactedGameObjectXAxisOffset - transform.position.x;
         Vector2 startPosition = transform.position;
         Vector2 endPos = new(transform.position.x, transform.position.y + (_jumpHeight * 0.75f));
@@ -151,6 +155,7 @@ public class PlayerController : MonoBehaviour
             transform.position = Vector2.Lerp(startPosition, endPos, _jumpCurve.Evaluate(currentDistance / startDistance));
             yield return null;
         } while (currentDistance > 0);//it should go to the negatives
+        _SFXscript.PlayTrampolineSFX();
         transform.position = new(startPosition.x, startPosition.y + _layerDelta);//to ofset negated curve (im kinda reusing same animation curve here sooo yeah)
         startPosition = transform.position;
         endPos = new(transform.position.x, transform.position.y + height);
@@ -162,6 +167,7 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
         transform.position = startPosition;
+        _SFXscript.PlayAscendEndSFX(_layerID);
         _animator.SetBool("IsJumping", false);
         _isPerformingAction = false;
     }
@@ -169,6 +175,7 @@ public class PlayerController : MonoBehaviour
     {
         _isPerformingAction = true;
         _animator.SetBool("IsJumping", true);
+        _SFXscript.PlayJumpSFX(_layerID);
         float time = 0;
         Vector2 startPosition = transform.position;
         Vector2 endPos = new(transform.position.x, transform.position.y + height);
@@ -179,12 +186,14 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
         transform.position = startPosition;
+        _SFXscript.PlayJumpSFX(_layerID);
         _animator.SetBool("IsJumping", false);
         _isPerformingAction = false;
     }
     IEnumerator SlideAnimationCoroutine(float height, float moveSpeed)//heads up: animation also changes boxcolider size and offset
     {
         _isPerformingAction = true;
+        _SFXscript.PlaySlideSFX();
         _animator.SetBool("IsSliding", true);
         float time = 0;
         while (time < moveSpeed)
