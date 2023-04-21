@@ -33,7 +33,7 @@ public class WaveFunctionRenderer : MonoBehaviour
     }
     public IEnumerator DrawWaveFunction(int sizeX, int sizeY, int xDelta, int yDelta, Prototype[] firstLine,bool firstCall = false)
     {
-        yield return StartCoroutine(Initialize(sizeX, sizeY, firstLine));
+        yield return StartCoroutine(Initialize(sizeX, sizeY, firstLine, firstCall));
         Render(xDelta, yDelta);
         if(_pauseManager != null && firstCall)
         {
@@ -65,9 +65,9 @@ public class WaveFunctionRenderer : MonoBehaviour
         yield return StartCoroutine(_solver.GetWaveFunction());
         _data = _solver.GetWaveFunctionSolved();
     }
-    private IEnumerator Initialize(int sizeX, int sizeY, Prototype[] firstLine)
+    private IEnumerator Initialize(int sizeX, int sizeY, Prototype[] firstLine, bool firstCall = false)
     {
-        yield return StartCoroutine(_solver.Initialize(sizeX, sizeY, firstLine));
+        yield return StartCoroutine(_solver.Initialize(sizeX, sizeY, firstLine, firstCall));
         yield return StartCoroutine(_solver.GetWaveFunction());
         _data = _solver.GetWaveFunctionSolved();
     }

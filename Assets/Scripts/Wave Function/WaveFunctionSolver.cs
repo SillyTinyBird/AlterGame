@@ -48,7 +48,7 @@ public class WaveFunctionSolver : MonoBehaviour
         yield return null;
         _isSolved = false;
     }
-    public IEnumerator Initialize(int sizeX, int sizeY, Prototype[] firstLine)
+    public IEnumerator Initialize(int sizeX, int sizeY, Prototype[] firstLine, bool firstCall = false)
     {
         _sizeX = sizeX;
         _sizeY = sizeY;
@@ -72,15 +72,15 @@ public class WaveFunctionSolver : MonoBehaviour
             }
         }
         error = new List<Prototype>() { _waveFunction[0, 0][0] };//needs a change
-        yield return StartCoroutine(PlacePrototypesInFirstColumn(affectedCoords));
+        yield return StartCoroutine(PlacePrototypesInFirstColumn(affectedCoords, firstCall));
         //affectedCoords.ForEach(x => { StartCoroutine(Propagate(x)); });
         _isSolved = false;
     }
-    private IEnumerator PlacePrototypesInFirstColumn(List<Tuple<int, int>> list)
+    private IEnumerator PlacePrototypesInFirstColumn(List<Tuple<int, int>> list,bool firstCall = false)
     {
         foreach (var x in list)
         {
-            yield return StartCoroutine(Propagate(x,false));
+            yield return StartCoroutine(Propagate(x, firstCall));
         }
         //list.ForEach(x => { });
     }
