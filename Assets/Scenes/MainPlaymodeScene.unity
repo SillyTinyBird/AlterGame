@@ -2184,6 +2184,7 @@ GameObject:
   - component: {fileID: 409828913}
   - component: {fileID: 409828914}
   - component: {fileID: 409828915}
+  - component: {fileID: 409828916}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2294,6 +2295,7 @@ MonoBehaviour:
   _animator: {fileID: 409828912}
   _spriteRendererSoWeCanChangeRenderOrderOnTheGo: {fileID: 409828909}
   _SFXscript: {fileID: 409828914}
+  _coinSFXscript: {fileID: 409828916}
 --- !u!212 &409828909
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2455,6 +2457,20 @@ MonoBehaviour:
   _obstacleScript: {fileID: 409828911}
   _fallSFX: {fileID: 8300000, guid: 75c58d63b766b9a4bae8a1ed5c4437c4, type: 3}
   _hitSFX: {fileID: 8300000, guid: 7c197ba4cce9f654e9f4ad951bd5b769, type: 3}
+  _volume: 1
+--- !u!114 &409828916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 409828906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e37349a521c1d784d9afe57ca64d84c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _doughnutSFX: {fileID: 8300000, guid: 70db9a2b83926124fb78b493a78c381e, type: 3}
   _volume: 1
 --- !u!1 &418002213
 GameObject:
