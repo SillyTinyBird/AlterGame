@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private SpriteRenderer _spriteRendererSoWeCanChangeRenderOrderOnTheGo;
     [SerializeField] private LayerDependantSFXScript _SFXscript;
+    [SerializeField] private DoughnutPickupSFX _coinSFXscript;
 
     private SwipeDetection _swipeDetection;
     /// <summary>
@@ -209,6 +210,7 @@ public class PlayerController : MonoBehaviour
         if(collision.gameObject.CompareTag("Coin"))//coin collection logic
         {
             ScoreSystem.AddPoints(250);
+            _coinSFXscript.PickupSFX();
             collision.gameObject.SetActive(false);
             return;//cause we didnt actually entered stairs zone, no need for anything else below
         }

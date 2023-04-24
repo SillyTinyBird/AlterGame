@@ -11,6 +11,7 @@ public class PlaymodeInterfaceScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _newScore;
     [SerializeField] private TextMeshProUGUI _deathMessage;
     [SerializeField] private DeathMessageScript _scriptWeGetDeathMessageFrom;
+    [SerializeField] private FailSFX _scriptForDeathSFX;
     public void SetPause(bool isPaused)
     {
         if (isPaused)
@@ -43,6 +44,7 @@ public class PlaymodeInterfaceScript : MonoBehaviour
             _curScore.SetText(ScoreSystem.GetScore().ToString("000000"));
             _newScore.SetText(FileIO.ReadInt("scoreData.bin").ToString("000000"));//yeah not so clean i guess
             _deathMessage.SetText(_scriptWeGetDeathMessageFrom.GetDeathMessage());
+            _scriptForDeathSFX.PlayDeathSFX();
             _deathScreenGroup.SetActive(true);
             _overlayGroup.SetActive(false);
         }

@@ -41,7 +41,7 @@ public class ObstacleScript : MonoBehaviour
         }
         if(collision.gameObject.tag.Contains("Drop"))
         {
-            _deathData = new Tuple<bool, int>(false, layerOfColidedObject);
+            _deathData = new Tuple<bool, int>(true, layerOfColidedObject);
             Debug.Log("fall on the layer " + layerOfColidedObject);
             _failManager.FailActions();
         }
