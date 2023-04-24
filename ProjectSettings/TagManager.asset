@@ -13,6 +13,7 @@ TagManager:
   - MiddleLayerDrop
   - LowerLayerDrop
   - Coin
+  - TutorialEnd
   layers:
   - Default
   - TransparentFX

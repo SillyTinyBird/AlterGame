@@ -1136,7 +1136,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 178.2
+  m_fontSize: 117.2
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4690,6 +4690,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2011690607}
   - component: {fileID: 2011690608}
+  - component: {fileID: 2011690609}
   m_Layer: 5
   m_Name: Options
   m_TagString: Untagged
@@ -4736,6 +4737,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 0f1a6b27992036648978414b78b3d0d3, type: 2}
+--- !u!114 &2011690609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011690606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8edc017f833dfb49b41e74f2ad64fcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _musicVolumeSlider: {fileID: 615937019}
+  _SFXVolumeSlider: {fileID: 620414254}
 --- !u!1 &2069649484
 GameObject:
   m_ObjectHideFlags: 0

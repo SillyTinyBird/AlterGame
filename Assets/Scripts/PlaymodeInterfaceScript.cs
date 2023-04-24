@@ -51,10 +51,17 @@ public class PlaymodeInterfaceScript : MonoBehaviour
     }
     public void ReloadLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);//async, for now
+        if (SettingsSaver.IsTutorialCompleete)
+        {
+            SceneManager.LoadScene(2);
+        }
+        else
+        {
+            SceneManager.LoadScene(3);
+        }
     }
     public void BackToManuButtonAction()
     {
-        SceneManager.LoadScene(0);//async, for now
+        SceneManager.LoadScene(0);
     }
 }
