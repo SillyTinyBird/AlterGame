@@ -6,9 +6,6 @@ public class IsTutorialFinishedTrigger : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("TutorialEnd"))
-        {
-            SettingsSaver.IsTutorialCompleete = true;
-        }
+        SettingsSaver.IsTutorialCompleete = true;
     }
 }

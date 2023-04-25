@@ -53,11 +53,11 @@ public class PlaymodeInterfaceScript : MonoBehaviour
     {
         if (SettingsSaver.IsTutorialCompleete)
         {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(1);
         }
         else
         {
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene(2);
         }
     }
     public void BackToManuButtonAction()
