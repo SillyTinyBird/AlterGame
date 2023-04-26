@@ -87,6 +87,34 @@ MonoBehaviour:
     m_Key: MainPlaymodeScene/Canvas/Loading/Text (TMP)
     m_Metadata:
       m_Items: []
+  - m_Id: 14205159419518976
+    m_Key: mainMenu/Canvas/Options/Playthrough
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14206280737333248
+    m_Key: TutorialPlaymodeScene/Manager/Chunk1/Start location/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14207008532963328
+    m_Key: TutorialPlaymodeScene/Manager/Chunk1/Start location/Text (1)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14207700018503680
+    m_Key: TutorialPlaymodeScene/Manager/Chunk1/Start location/Text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14207943271358464
+    m_Key: TutorialPlaymodeScene/Manager/Chunk1/Start location/Text 2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14208138302300160
+    m_Key: TutorialPlaymodeScene/Manager/Chunk1/Start location/Text (1) 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14208785491795968
+    m_Key: TutorialPlaymodeScene/Manager/Chunk1/Start location/Text 3
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

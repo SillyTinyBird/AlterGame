@@ -93,7 +93,37 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 9836113500676096
-    m_Localized: Loading...
+    m_Localized: 'Loading
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14205159419518976
+    m_Localized: Disable tutorial
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14206280737333248
+    m_Localized: Swipe up for jump
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14207008532963328
+    m_Localized: Swipe down for slide
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14207700018503680
+    m_Localized: "Jump over white/red striped obstacles \u2193"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14207943271358464
+    m_Localized: "Slide under yelow/black striped obstacles \u2193"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14208138302300160
+    m_Localized: "Jump to another level by swiping up or down near trampoline \u2193\n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14208785491795968
+    m_Localized: "Jump over gaps between buildings\u2193"
     m_Metadata:
       m_Items: []
   references:
