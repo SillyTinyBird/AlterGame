@@ -126,6 +126,76 @@ MonoBehaviour:
     m_Localized: "Jump over gaps between buildings\u2193"
     m_Metadata:
       m_Items: []
+  - m_Id: 14910671312232448
+    m_Localized: 'How to play
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14910735061458944
+    m_Localized: 'Credits
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14910982114353152
+    m_Localized: 'How to play:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14911098246242304
+    m_Localized: Swipe up for jump
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14911148192014336
+    m_Localized: Swipe down for slide
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14911178323894272
+    m_Localized: "Jump over white/red striped obstacles \n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14911240743526400
+    m_Localized: "Slide under yelow/black striped obstacles \n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14911285932957696
+    m_Localized: Jump to another level by swiping up or down near trampoline
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14911341176135680
+    m_Localized: Jump over gaps between buildings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14911360646094848
+    m_Localized: Good luck!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14926513479458816
+    m_Localized: 'Credits:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14926564880654336
+    m_Localized: 'Game By:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14926818719932416
+    m_Localized: 'Music and Art by:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14926863196332032
+    m_Localized: 'Quality Assurance:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14926946327437312
+    m_Localized: 'Footsteps SFX:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14926983509942272
+    m_Localized: 'Thank you
+
+      for playing!'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

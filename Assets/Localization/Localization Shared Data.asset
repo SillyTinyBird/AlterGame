@@ -115,6 +115,70 @@ MonoBehaviour:
     m_Key: TutorialPlaymodeScene/Manager/Chunk1/Start location/Text 3
     m_Metadata:
       m_Items: []
+  - m_Id: 14910671312232448
+    m_Key: mainMenu/Canvas/Menu/How to play/Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14910735061458944
+    m_Key: mainMenu/Canvas/Menu/Credits/Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14910982114353152
+    m_Key: mainMenu/Canvas/Tutorial/Scroll View/Viewport/Content/Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14911098246242304
+    m_Key: mainMenu/Canvas/Tutorial/Scroll View/Viewport/Content/Jump
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14911148192014336
+    m_Key: mainMenu/Canvas/Tutorial/Scroll View/Viewport/Content/Slide
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14911178323894272
+    m_Key: mainMenu/Canvas/Tutorial/Scroll View/Viewport/Content/Text Red White
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14911240743526400
+    m_Key: mainMenu/Canvas/Tutorial/Scroll View/Viewport/Content/Text Yellow Black
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14911285932957696
+    m_Key: mainMenu/Canvas/Tutorial/Scroll View/Viewport/Content/Text Trampoline
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14911341176135680
+    m_Key: mainMenu/Canvas/Tutorial/Scroll View/Viewport/Content/Text Gap
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14911360646094848
+    m_Key: mainMenu/Canvas/Tutorial/Scroll View/Viewport/Content/GL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14926513479458816
+    m_Key: mainMenu/Canvas/Credits/Scroll View/Viewport/Content/Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14926564880654336
+    m_Key: mainMenu/Canvas/Credits/Scroll View/Viewport/Content/GAme by
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14926818719932416
+    m_Key: 'mainMenu/Canvas/Credits/Scroll View/Viewport/Content/Music and Art by:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14926863196332032
+    m_Key: mainMenu/Canvas/Credits/Scroll View/Viewport/Content/qa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14926946327437312
+    m_Key: mainMenu/Canvas/Credits/Scroll View/Viewport/Content/Footsteps
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14926983509942272
+    m_Key: mainMenu/Canvas/Credits/Scroll View/Viewport/Content/Thanks
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
