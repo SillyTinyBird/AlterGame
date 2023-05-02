@@ -103,11 +103,6 @@ public class PlayerController : MonoBehaviour
         else
         {
             StartCoroutine(SlideAnimationCoroutine(0, _slideSpeed));
-            /*if(_interactedGameObjectTransform != null)
-            {
-                StartCoroutine(AscendAnimationCoroutine(0,0));
-            }*/
-
             Debug.Log("slide");
         }
     }
