@@ -207,6 +207,10 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.tag.Contains("Layer"))//so we dont count obstacles
+        {
+            return;
+        }
         _countOfCurrentlyColidedObjects++;
         if (collision.gameObject.CompareTag("Coin"))//coin collection logic
         {
@@ -221,6 +225,10 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (collision.gameObject.tag.Contains("Layer"))//so we dont count obstacles
+        {
+            return;
+        }
         _countOfCurrentlyColidedObjects--;
         Debug.Log(_countOfCurrentlyColidedObjects);
     }

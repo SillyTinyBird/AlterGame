@@ -14,13 +14,13 @@ public class SettingsSaver : MonoBehaviour
         set
         {
             _isTutorialCompleete = value;
-            if (!_isTutorialCompleete)//cause PlayerPrefs dosent have bool
+            if (_isTutorialCompleete)//cause PlayerPrefs dosent have bool
             {
-                PlayerPrefs.SetInt("isTutorialCompleete", 0);
+                PlayerPrefs.SetInt("isTutorialCompleete", 1);
             }
             else
             {
-                PlayerPrefs.SetInt("isTutorialCompleete", 1);
+                PlayerPrefs.SetInt("isTutorialCompleete", 0);
             }
         }
     }
@@ -34,13 +34,13 @@ public class SettingsSaver : MonoBehaviour
     }
     private void OnDestroy()
     {
-        if (!_isTutorialCompleete)//cause PlayerPrefs dosent have bool
+        if (_isTutorialCompleete)//cause PlayerPrefs dosent have bool
         {
-            PlayerPrefs.SetInt("isTutorialCompleete", 0);
+            PlayerPrefs.SetInt("isTutorialCompleete", 1);
         }
         else
         {
-            PlayerPrefs.SetInt("isTutorialCompleete", 1);
+            PlayerPrefs.SetInt("isTutorialCompleete", 0);
         }
         PlayerPrefs.SetFloat("MusicVolume", _musicVolumeSlider.value);
         PlayerPrefs.SetFloat("SFXVolume", _SFXVolumeSlider.value);
