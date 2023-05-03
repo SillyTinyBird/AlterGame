@@ -209,7 +209,8 @@ public class PlayerController : MonoBehaviour
         _countOfCurrentlyColidedObjects++;
         if (collision.gameObject.CompareTag("Coin"))//coin collection logic
         {
-            ScoreSystem.AddPoints(250);
+            ScoreSystem.Instance.AddPoints(250);
+            ScoreSystem.Instance.AddDoughnut();
             _coinSFXscript.PickupSFX();
             collision.gameObject.SetActive(false);
             return;//cause we didnt actually entered stairs zone, no need for anything else below

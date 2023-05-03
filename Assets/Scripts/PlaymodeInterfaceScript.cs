@@ -37,11 +37,11 @@ public class PlaymodeInterfaceScript : MonoBehaviour
         if (_deathScreenGroup != null && _overlayGroup != null)
         {
             SetPause(true);
-            if (ScoreSystem.SaveScore())
+            if (ScoreSystem.Instance.SaveScore())
             {
                 //do something about it
             }
-            _curScore.SetText(ScoreSystem.GetScore().ToString("000000"));
+            _curScore.SetText(ScoreSystem.Instance.GetScore().ToString("000000"));
             _newScore.SetText(FileIO.ReadInt("scoreData.bin").ToString("000000"));//yeah not so clean i guess
             _deathMessage.SetText(_scriptWeGetDeathMessageFrom.GetDeathMessage());
             _scriptForDeathSFX.PlayDeathSFX();
