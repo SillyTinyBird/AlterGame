@@ -135,6 +135,7 @@ public class PlayerController : MonoBehaviour
         transform.position = new(startPosition.x, startPosition.y - _layerDelta);//to make sure we know exactly where we are
         _SFXscript.PlayDescendEndSFX(_layerID);
         _animator.SetBool("IsJumping", false);
+        _isJumpCanceled = false;
         _isPerformingAction = false;
     }
     IEnumerator AscendAnimationCoroutine(float height, float moveSpeed)
@@ -166,6 +167,7 @@ public class PlayerController : MonoBehaviour
         transform.position = startPosition;
         _SFXscript.PlayAscendEndSFX(_layerID);
         _animator.SetBool("IsJumping", false);
+        _isSlideCanceled = false;
         _isPerformingAction = false;
     }
     IEnumerator JumpAnimationCoroutine(float height, float moveSpeed)
