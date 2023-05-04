@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _ascendDescendHopHeight = 1.6f;//note that whenever this value changes, animation curve shoud be changed in inspector accordingly
     [SerializeField] private AnimationCurve _extrapolationCurve;
     [Header("Misc Settings")]
+    private float _cancelSpeedFraction = 0.15f;
     [SerializeField] private Animator _animator;
     [SerializeField] private SpriteRenderer _spriteRendererSoWeCanChangeRenderOrderOnTheGo;
     [SerializeField] private LayerDependantSFXScript _SFXscript;
@@ -31,7 +32,11 @@ public class PlayerController : MonoBehaviour
     private string _currentTag = "";
     private int _countOfCurrentlyColidedObjects = 0;
     private Transform _interactedGameObjectTransform;
-    
+
+    private bool _isSlideCanceled = false;
+    private bool _isJumpCanceled = false;
+
+
     private void Awake()
     {
         _swipeDetection = SwipeDetection.Instance;
@@ -74,6 +79,10 @@ public class PlayerController : MonoBehaviour
     }
     private void SwipeUp()
     {
+        if (!_isSlideCanceled)
+        {
+            _isSlideCanceled = true;
+        }
         if (_isPerformingAction)
             return;
         if ((_layerID == 1 && _currentTag == "StairsUp" || _layerID == 0) && _countOfCurrentlyColidedObjects > 0)
@@ -92,6 +101,9 @@ public class PlayerController : MonoBehaviour
     }
     private void SwipeDown()
     {
+        if (!_isJumpCanceled) {
+            _isJumpCanceled = true;
+        }
         if (_isPerformingAction)
             return;
         if ((_layerID == 1 && _currentTag == "StairsDown" || _layerID == 2) && _countOfCurrentlyColidedObjects > 0)
@@ -121,17 +133,6 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
         transform.position = new(startPosition.x, startPosition.y - _layerDelta);//to make sure we know exactly where we are
-        /*_animarot.SetBool("isRolling", true);
-        
-        Debug.Log(transform.position);
-        time = 0f;
-        while (time < moveSpeed/2)//wait for roll
-        {
-            time += Time.deltaTime;
-            yield return null;
-        }
-        _animarot.SetBool("IsJumping", false);
-        _animarot.SetBool("isRolling", false);*///in case i need cool roll again idk
         _SFXscript.PlayDescendEndSFX(_layerID);
         _animator.SetBool("IsJumping", false);
         _isPerformingAction = false;
@@ -179,12 +180,36 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = Vector2.Lerp(startPosition, endPos, _jumpCurve.Evaluate(time / moveSpeed));
             time += Time.deltaTime;
+            if (_isJumpCanceled)
+            {
+                StartCoroutine(JumpCancelAnimationCoroutine(startPosition, moveSpeed));
+                yield break;
+            }
             yield return null;
         }
         transform.position = startPosition;
         _SFXscript.PlayJumpSFX(_layerID);
         _animator.SetBool("IsJumping", false);
+        _isSlideCanceled = false;
         _isPerformingAction = false;
+    }
+    IEnumerator JumpCancelAnimationCoroutine(Vector2 startPos, float moveSpeed)
+    {
+        _isPerformingAction = true;
+        _isSlideCanceled = false;
+        float time = 0;
+        Vector2 startPosition = transform.position;
+        while (time < moveSpeed * _cancelSpeedFraction)
+        {
+            transform.position = Vector2.Lerp(startPosition, startPos, time/(moveSpeed * _cancelSpeedFraction));
+            time += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = startPos;
+        _SFXscript.PlayJumpSFX(_layerID);
+        _animator.SetBool("IsJumping", false);
+        _isPerformingAction = false;
+        StartCoroutine(SlideAnimationCoroutine(0, _slideSpeed));
     }
     IEnumerator SlideAnimationCoroutine(float height, float moveSpeed)//heads up: animation also changes boxcolider size and offset
     {
@@ -195,10 +220,25 @@ public class PlayerController : MonoBehaviour
         while (time < moveSpeed)
         {
             time += Time.deltaTime;
+            if (_isSlideCanceled)
+            {
+                StartCoroutine(SlideCancelAnimationCoroutine(0, moveSpeed));
+                yield break;
+            }
             yield return null;
         }
         _animator.SetBool("IsSliding", false);
+        _isJumpCanceled = false;
         _isPerformingAction = false;
+    }
+    IEnumerator SlideCancelAnimationCoroutine(float height, float moveSpeed)
+    {
+        _isPerformingAction = true;
+        _isJumpCanceled = false;
+        _animator.SetBool("IsSliding", false);
+        yield return null;
+        _isPerformingAction = false;
+        StartCoroutine(JumpAnimationCoroutine(_jumpHeight, _jumpSpeed));
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
