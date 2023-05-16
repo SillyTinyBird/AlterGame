@@ -12,6 +12,7 @@ public class PlaymodeInterfaceScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _deathMessage;
     [SerializeField] private DeathMessageScript _scriptWeGetDeathMessageFrom;
     [SerializeField] private FailSFX _scriptForDeathSFX;
+    [SerializeField] private IronSourceAdsScript _ads;
     public void SetPause(bool isPaused)
     {
         if (isPaused)
@@ -51,14 +52,17 @@ public class PlaymodeInterfaceScript : MonoBehaviour
     }
     public void ReloadLevel()
     {
-        if (SettingsSaver.IsTutorialCompleete)
-        {
-            SceneManager.LoadScene(1);
-        }
-        else
-        {
-            SceneManager.LoadScene(2);
-        }
+        SceneManager.LoadScene(1);
+    }
+    public void PlayRewardedAdButton()
+    {
+        _ads.ShowRewardedAd();
+    }
+    public void RewardedAdCompleete()
+    {
+        _deathScreenGroup.SetActive(false);
+        _overlayGroup.SetActive(true);
+        SetPause(false);
     }
     public void BackToManuButtonAction()
     {

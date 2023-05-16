@@ -196,6 +196,12 @@ MonoBehaviour:
       for playing!'
     m_Metadata:
       m_Items: []
+  - m_Id: 21470504127815680
+    m_Localized: 'Second chance
+
+      (view ad)'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

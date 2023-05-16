@@ -89,14 +89,12 @@ public class PlayerController : MonoBehaviour
         {
             //StartCoroutine(MoveToCoroutine(new Vector2(transform.position.x, transform.position.y + _layerDelta), _moveSpeed));
             StartCoroutine(AscendAnimationCoroutine(_ascendDescendHopHeight, _moveSpeed));
-            Debug.Log("Ascend");
             _layerID += 1;
             UpdateSpriteLayer();
         }
         else
         {
             StartCoroutine(JumpAnimationCoroutine(_jumpHeight, _jumpSpeed));
-            Debug.Log("Jump");
         }
     }
     private void SwipeDown()
@@ -115,7 +113,6 @@ public class PlayerController : MonoBehaviour
         else
         {
             StartCoroutine(SlideAnimationCoroutine(0, _slideSpeed));
-            Debug.Log("slide");
         }
     }
     IEnumerator DescendAnimationCoroutine(float height, float moveSpeed)
@@ -258,7 +255,6 @@ public class PlayerController : MonoBehaviour
             return;//cause we didnt actually entered stairs zone, no need for anything else below
         }
         _interactedGameObjectTransform = collision.transform;
-        Debug.Log(_countOfCurrentlyColidedObjects);
         _currentTag = collision.gameObject.tag;
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -268,6 +264,5 @@ public class PlayerController : MonoBehaviour
             return;
         }
         _countOfCurrentlyColidedObjects--;
-        Debug.Log(_countOfCurrentlyColidedObjects);
     }
 }
