@@ -1635,9 +1635,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 136524089741ec74cabe057c568a1e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _androidAppkey: null
+  _androidAppkey: 191d91105
   _rewardManager: {fileID: 1753540965}
   _obstacleManager: {fileID: 409828911}
+  _buttonToDisableOnceRewardGot: {fileID: 266039784}
 --- !u!4 &295216287
 Transform:
   m_ObjectHideFlags: 0

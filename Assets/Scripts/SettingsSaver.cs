@@ -29,8 +29,9 @@ public class SettingsSaver : MonoBehaviour
     {
         _isTutorialCompleete = PlayerPrefs.GetInt("isTutorialCompleete") == 0 ? false : true ;
         _tutorialToggle.isOn = _isTutorialCompleete;
-        _musicVolumeSlider.value = PlayerPrefs.GetFloat("MusicVolume");
-        _SFXVolumeSlider.value = PlayerPrefs.GetFloat("SFXVolume");
+
+        _musicVolumeSlider.value = PlayerPrefs.HasKey("MusicVolume") ? PlayerPrefs.GetFloat("MusicVolume") : 1;
+        _SFXVolumeSlider.value = PlayerPrefs.HasKey("SFXVolume") ? PlayerPrefs.GetFloat("SFXVolume") : 1;
     }
     private void OnDestroy()
     {
