@@ -6,6 +6,7 @@ public class ScoreSystem : MonoBehaviour
 {
     private int _score;
     private int _distance;
+    private int _dougnuts;
     [SerializeField] TextMeshProUGUI _scoreText;
     [SerializeField] TextMeshProUGUI _distanceText;
     [SerializeField] TextMeshProUGUI _dougnutText;
@@ -24,14 +25,14 @@ public class ScoreSystem : MonoBehaviour
         }
         _score = 0;
         _distance = 0;
+        _dougnuts = 0;
         StartCoroutine(ScoreCoroutine());
         StartCoroutine(DistanceCoroutine());
     }
     public static ScoreSystem Instance => instance;
-    public int GetScore()
-    {
-        return _score;
-    }
+    public int Score => _score;
+    public int Distance => _distance;
+    public int Dougnuts => _dougnuts;
     public void AddPoints(int amount)
     {
         if (amount > 0)
@@ -39,9 +40,10 @@ public class ScoreSystem : MonoBehaviour
     }
     public void AddDoughnut()
     {
+        _dougnuts++;
         if (_dougnutText != null)
         {
-            _dougnutText.text = (int.Parse(_dougnutText.text) + 1).ToString("000");
+            _dougnutText.text = _dougnuts.ToString("000");
         }
     }
     /// <summary>

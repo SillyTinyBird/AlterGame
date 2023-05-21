@@ -179,6 +179,10 @@ MonoBehaviour:
     m_Key: mainMenu/Canvas/Credits/Scroll View/Viewport/Content/Thanks
     m_Metadata:
       m_Items: []
+  - m_Id: 21470504127815680
+    m_Key: MainPlaymodeScene/Canvas/Death Screen/Ad/Text (TMP)
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
