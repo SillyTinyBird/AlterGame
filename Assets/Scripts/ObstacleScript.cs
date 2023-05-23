@@ -15,6 +15,7 @@ public class ObstacleScript : MonoBehaviour
     [Header("Parametters:")]
     [SerializeField] PlaymodeInterfaceScript _failManager;
     [SerializeField] float _invinsabilitySeconds = 1f;
+    [SerializeField] DeathAnimator _death;
 
     bool _isInvinsible = false;
 
@@ -49,12 +50,14 @@ public class ObstacleScript : MonoBehaviour
         if(collision.gameObject.tag.Contains("Drop"))
         {
             _deathData = new Tuple<bool, int>(true, layerOfColidedObject);
-            _failManager.FailActions();
+            StartCoroutine(PlayDeathAnimationThenFail(true));
+            //_failManager.FailActions();
         }
         else
         {
             _deathData = new Tuple<bool, int>(false, layerOfColidedObject);
-            _failManager.FailActions();
+            StartCoroutine(PlayDeathAnimationThenFail(false));
+            //_failManager.FailActions();
         }
     }
     public void InvisabilityFrames()
@@ -66,5 +69,17 @@ public class ObstacleScript : MonoBehaviour
         _isInvinsible = true;
         yield return new WaitForSeconds(_invinsabilitySeconds);
         _isInvinsible = false;
+    }
+    IEnumerator PlayDeathAnimationThenFail(bool isFall)
+    {
+        if (isFall)
+        {
+            yield return StartCoroutine(_death.FallDeathAnimation());
+        }
+        else
+        {
+            yield return StartCoroutine(_death.BonkDeathAnimation());
+        }
+        _failManager.FailActions();
     }
 }

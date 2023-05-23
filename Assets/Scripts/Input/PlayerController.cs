@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private SpriteRenderer _spriteRendererSoWeCanChangeRenderOrderOnTheGo;
     [SerializeField] private LayerDependantSFXScript _SFXscript;
     [SerializeField] private DoughnutPickupSFX _coinSFXscript;
+    [SerializeField] private VFXcontroller _vfx;
+    [SerializeField] private PinkFrames _pink;
 
     private SwipeDetection _swipeDetection;
     /// <summary>
@@ -43,6 +45,7 @@ public class PlayerController : MonoBehaviour
         _layerID = 1;//we start on the middle layer
         UpdateSpriteLayer();
         _isPerformingAction = false;
+        _vfx.InitializeDustRun();
     }
     /// <summary>
     /// 0 = lower; 1 = middle; 2 = upper.
@@ -117,6 +120,8 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator DescendAnimationCoroutine(float height, float moveSpeed)
     {
+        _vfx.SetActiveDustRun(false);
+        _vfx.PlayDustJump();
         _isPerformingAction = true;
         _animator.SetBool("IsJumping", true);
         _SFXscript.PlayDescendStartSFX(_layerID);
@@ -134,9 +139,13 @@ public class PlayerController : MonoBehaviour
         _animator.SetBool("IsJumping", false);
         _isJumpCanceled = false;
         _isPerformingAction = false;
+        _vfx.SetActiveDustRun(true);
+        _vfx.PlayDustJump();
     }
     IEnumerator AscendAnimationCoroutine(float height, float moveSpeed)
     {
+        _vfx.SetActiveDustRun(false);
+        _vfx.PlayDustJump();
         _isPerformingAction = true;
         _animator.SetBool("IsJumping", true);
         _SFXscript.PlayAscendStartSFX(_layerID);
@@ -166,9 +175,13 @@ public class PlayerController : MonoBehaviour
         _animator.SetBool("IsJumping", false);
         _isSlideCanceled = false;
         _isPerformingAction = false;
+        _vfx.SetActiveDustRun(true);
+        _vfx.PlayDustJump();
     }
     IEnumerator JumpAnimationCoroutine(float height, float moveSpeed)
     {
+        _vfx.SetActiveDustRun(false);
+        _vfx.PlayDustJump();
         _isPerformingAction = true;
         _animator.SetBool("IsJumping", true);
         _SFXscript.PlayJumpSFX(_layerID);
@@ -191,6 +204,8 @@ public class PlayerController : MonoBehaviour
         _animator.SetBool("IsJumping", false);
         _isSlideCanceled = false;
         _isPerformingAction = false;
+        _vfx.SetActiveDustRun(true);
+        _vfx.PlayDustJump();
     }
     IEnumerator JumpCancelAnimationCoroutine(Vector2 startPos, float moveSpeed)
     {
@@ -208,6 +223,7 @@ public class PlayerController : MonoBehaviour
         _SFXscript.PlayJumpSFX(_layerID);
         _animator.SetBool("IsJumping", false);
         _isPerformingAction = false;
+        _vfx.SetActiveDustRun(true);
         StartCoroutine(SlideAnimationCoroutine(0, _slideSpeed));
     }
     IEnumerator SlideAnimationCoroutine(float height, float moveSpeed)//heads up: animation also changes boxcolider size and offset
@@ -251,6 +267,8 @@ public class PlayerController : MonoBehaviour
             ScoreSystem.Instance.AddPoints(250);
             ScoreSystem.Instance.AddDoughnut();
             _coinSFXscript.PickupSFX();
+            _vfx.PlayCollect();
+            StartCoroutine(_pink.RenderPink());
             collision.gameObject.SetActive(false);
             return;//cause we didnt actually entered stairs zone, no need for anything else below
         }
