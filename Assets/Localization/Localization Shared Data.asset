@@ -183,6 +183,10 @@ MonoBehaviour:
     m_Key: MainPlaymodeScene/Canvas/Death Screen/Ad/Text (TMP)
     m_Metadata:
       m_Items: []
+  - m_Id: 24766674002354176
+    m_Key: mainMenu/Canvas/SafeArea/Menu/Leaderboard/Options
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

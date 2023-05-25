@@ -6,7 +6,7 @@ public class PinkFrames : MonoBehaviour
 {
     [SerializeField] SpriteRenderer _spriteRenderer;
     [SerializeField] Color _color;
-    public IEnumerator RenderPink(float duration = 1)
+    public IEnumerator RenderPink(float duration = 1.5f)
     {
         float time = 0;
         while (time < duration)
