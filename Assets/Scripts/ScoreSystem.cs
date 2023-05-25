@@ -55,6 +55,10 @@ public class ScoreSystem : MonoBehaviour
         int score = int.Parse(FileIO.ReadString(fileName));
         if (score < _score)
         {
+            if (PlayServicesLoginStatus.IsLoginSucceeded)
+            {
+                Leaderboard.PostScore(_score);
+            }
             FileIO.WriteString(fileName, _score.ToString());
             return true;
         }
