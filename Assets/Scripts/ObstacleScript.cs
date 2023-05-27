@@ -16,14 +16,15 @@ public class ObstacleScript : MonoBehaviour
     [SerializeField] PlaymodeInterfaceScript _failManager;
     [SerializeField] float _invinsabilitySeconds = 1f;
     [SerializeField] DeathAnimator _death;
+    [SerializeField] private FailSFX _scriptForDeathSFX;
 
     bool _isInvinsible = false;
+    bool _isAnimationPlaying = false;
 
     private Dictionary<string, int> _layers = new Dictionary<string, int>() {
         { "LowerLayer", 0 }, { "MiddleLayer", 1 }, { "UpperLayer", 2 },
         { "LowerLayerDrop", 0 }, { "MiddleLayerDrop", 1 }, { "UpperLayerDrop", 2 } };
     private Tuple<bool, int> _deathData = new Tuple<bool, int>(false,0);//static cause there will be only one instance of this script on scene 
-    private Vector3 _deathPos = new();
     /// <summary>
     /// Return conditions of the player's death
     /// </summary>
@@ -36,6 +37,10 @@ public class ObstacleScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         int layerOfColidedObject;
+        if (_isAnimationPlaying)
+        {
+            return;
+        }
         if(_isInvinsible)
         {
             return;
@@ -48,7 +53,6 @@ public class ObstacleScript : MonoBehaviour
         {
             return;
         }
-        _deathPos = transform.position;
         if(collision.gameObject.tag.Contains("Drop"))
         {
             _deathData = new Tuple<bool, int>(true, layerOfColidedObject);
@@ -64,7 +68,6 @@ public class ObstacleScript : MonoBehaviour
     }
     public void InvisabilityFrames()
     {
-        transform.position = _deathPos;//so plyer goes back where he was upon death !yeah i know adding this here is a code no-no and i have no excuse
         StartCoroutine(InvFramesInSecondsCoroutine());
     }
     IEnumerator InvFramesInSecondsCoroutine()
@@ -75,6 +78,9 @@ public class ObstacleScript : MonoBehaviour
     }
     IEnumerator PlayDeathAnimationThenFail(bool isFall)
     {
+        _isAnimationPlaying = true;
+        Debug.Log("death");
+        _scriptForDeathSFX.PlayDeathSFX();
         if (isFall)
         {
             yield return StartCoroutine(_death.FallDeathAnimation());
@@ -84,5 +90,6 @@ public class ObstacleScript : MonoBehaviour
             yield return StartCoroutine(_death.BonkDeathAnimation());
         }
         _failManager.FailActions();
+        _isAnimationPlaying = false;
     }
 }

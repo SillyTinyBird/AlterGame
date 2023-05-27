@@ -5,14 +5,15 @@ using UnityEngine;
 public class IronSourceAdsScript : MonoBehaviour
 {
     [SerializeField] private string _androidAppkey = "";
-    [SerializeField] private PlaymodeInterfaceScript _rewardManager;
-    [SerializeField] private ObstacleScript _obstacleManager;
-    [SerializeField] GameObject _buttonToDisableOnceRewardGot;
+    [SerializeField] private RewardManager _reward;
+    private static bool _isInit = false;
     void Start()
     {
-        IronSource.Agent.init(_androidAppkey, IronSourceAdUnits.REWARDED_VIDEO);
-        //IronSource.Agent.init(_androidAppkey, IronSourceAdUnits.INTERSTITIAL);
-        //IronSource.Agent.init(_androidAppkey, IronSourceAdUnits.BANNER);
+        if (!_isInit)
+        {
+            IronSource.Agent.init(_androidAppkey, IronSourceAdUnits.REWARDED_VIDEO);
+            _isInit = true;
+        }
     }
 
     private void OnEnable()
@@ -27,7 +28,19 @@ public class IronSourceAdsScript : MonoBehaviour
         IronSourceRewardedVideoEvents.onAdShowFailedEvent += RewardedVideoOnAdShowFailedEvent;
         IronSourceRewardedVideoEvents.onAdRewardedEvent += RewardedVideoOnAdRewardedEvent;
         IronSourceRewardedVideoEvents.onAdClickedEvent += RewardedVideoOnAdClickedEvent;
+    }
+    private void OnDisable()
+    {
+        IronSourceEvents.onSdkInitializationCompletedEvent -= SdkInitializationCompletedEvent;
 
+        //Add AdInfo Rewarded Video Events
+        IronSourceRewardedVideoEvents.onAdOpenedEvent -= RewardedVideoOnAdOpenedEvent;
+        IronSourceRewardedVideoEvents.onAdClosedEvent -= RewardedVideoOnAdClosedEvent;
+        IronSourceRewardedVideoEvents.onAdAvailableEvent -= RewardedVideoOnAdAvailable;
+        IronSourceRewardedVideoEvents.onAdUnavailableEvent -= RewardedVideoOnAdUnavailable;
+        IronSourceRewardedVideoEvents.onAdShowFailedEvent -= RewardedVideoOnAdShowFailedEvent;
+        IronSourceRewardedVideoEvents.onAdRewardedEvent -= RewardedVideoOnAdRewardedEvent;
+        IronSourceRewardedVideoEvents.onAdClickedEvent -= RewardedVideoOnAdClickedEvent;
     }
     public void ShowRewardedAd()
     {
@@ -77,9 +90,7 @@ public class IronSourceAdsScript : MonoBehaviour
     // When using server-to-server callbacks, you may ignore this event and wait for the ironSource server callback.
     void RewardedVideoOnAdRewardedEvent(IronSourcePlacement placement, IronSourceAdInfo adInfo)
     {
-        _rewardManager.RewardedAdCompleete();
-        _obstacleManager.InvisabilityFrames();
-        _buttonToDisableOnceRewardGot.SetActive(false);
+        _reward.GiveReward();
     }
     // The rewarded video ad was failed to show.
     void RewardedVideoOnAdShowFailedEvent(IronSourceError error, IronSourceAdInfo adInfo)
@@ -91,6 +102,4 @@ public class IronSourceAdsScript : MonoBehaviour
     void RewardedVideoOnAdClickedEvent(IronSourcePlacement placement, IronSourceAdInfo adInfo)
     {
     }
-
-
 }

@@ -1628,6 +1628,7 @@ GameObject:
   m_Component:
   - component: {fileID: 295216287}
   - component: {fileID: 295216286}
+  - component: {fileID: 295216288}
   m_Layer: 0
   m_Name: Ads
   m_TagString: Untagged
@@ -1648,9 +1649,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _androidAppkey: 191d91105
-  _rewardManager: {fileID: 1753540965}
-  _obstacleManager: {fileID: 409828911}
-  _buttonToDisableOnceRewardGot: {fileID: 266039784}
+  _reward: {fileID: 295216288}
 --- !u!4 &295216287
 Transform:
   m_ObjectHideFlags: 0
@@ -1666,6 +1665,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &295216288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295216285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e756687fca0d28a4dac947d9c76446ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rewardManager: {fileID: 1753540965}
+  _obstacleManager: {fileID: 409828911}
+  _pc: {fileID: 409828908}
+  _buttonToDisableOnceRewardGot: {fileID: 266039784}
 --- !u!1 &311118594
 GameObject:
   m_ObjectHideFlags: 0
@@ -2627,6 +2642,7 @@ MonoBehaviour:
   _coinSFXscript: {fileID: 409828916}
   _vfx: {fileID: 409828917}
   _pink: {fileID: 409828918}
+  _da: {fileID: 409828919}
 --- !u!212 &409828909
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2719,8 +2735,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerController: {fileID: 409828908}
   _failManager: {fileID: 1753540965}
-  _invinsabilitySeconds: 1
+  _invinsabilitySeconds: 1.5
   _death: {fileID: 409828919}
+  _scriptForDeathSFX: {fileID: 409828915}
 --- !u!95 &409828912
 Animator:
   serializedVersion: 5
@@ -3691,6 +3708,53 @@ Transform:
   - {fileID: 1722900569}
   m_Father: {fileID: 1048360040}
   m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &609427869
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 609427871}
+  - component: {fileID: 609427870}
+  m_Layer: 0
+  m_Name: Score System
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &609427870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609427869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 689ba478b934c65478d7f070b45fd288, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scoreText: {fileID: 443109959}
+  _distanceText: {fileID: 1620635003}
+  _dougnutText: {fileID: 2099981597}
+--- !u!4 &609427871
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609427869}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705058396
 GameObject:
@@ -9761,7 +9825,6 @@ GameObject:
   - component: {fileID: 1753540961}
   - component: {fileID: 1753540960}
   - component: {fileID: 1753540965}
-  - component: {fileID: 1753540964}
   - component: {fileID: 1753540966}
   - component: {fileID: 1753540968}
   - component: {fileID: 1753540967}
@@ -9856,21 +9919,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1753540964
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1753540959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 689ba478b934c65478d7f070b45fd288, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _scoreText: {fileID: 443109959}
-  _distanceText: {fileID: 1620635003}
-  _dougnutText: {fileID: 2099981597}
 --- !u!114 &1753540965
 MonoBehaviour:
   m_ObjectHideFlags: 0

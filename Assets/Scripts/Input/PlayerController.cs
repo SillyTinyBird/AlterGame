@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private DoughnutPickupSFX _coinSFXscript;
     [SerializeField] private VFXcontroller _vfx;
     [SerializeField] private PinkFrames _pink;
+    [SerializeField] private DeathAnimator _da;
 
     private SwipeDetection _swipeDetection;
     /// <summary>
@@ -37,15 +38,29 @@ public class PlayerController : MonoBehaviour
 
     private bool _isSlideCanceled = false;
     private bool _isJumpCanceled = false;
-
+    private Vector3 _initPos = new();
 
     private void Awake()
     {
+        _initPos = transform.position;
         _swipeDetection = SwipeDetection.Instance;
         _layerID = 1;//we start on the middle layer
         UpdateSpriteLayer();
         _isPerformingAction = false;
         _vfx.InitializeDustRun();
+    }
+    public void ResetPlayerPosition()
+    {
+        _da.StopAllCoroutines();
+        StopAllCoroutines();
+        _isPerformingAction = false;
+        _isSlideCanceled = false;
+        _isJumpCanceled = false;
+        _animator.SetBool("IsJumping", false);
+        _animator.SetBool("IsSliding", false);
+        transform.position = _initPos;
+        _layerID = 1;//we start on the middle layer
+        UpdateSpriteLayer();
     }
     /// <summary>
     /// 0 = lower; 1 = middle; 2 = upper.
@@ -82,6 +97,10 @@ public class PlayerController : MonoBehaviour
     }
     private void SwipeUp()
     {
+        if (DeathAnimator.IsPlayingAnimation)
+        {
+            return;
+        }
         if (!_isSlideCanceled)
         {
             _isSlideCanceled = true;
@@ -102,6 +121,10 @@ public class PlayerController : MonoBehaviour
     }
     private void SwipeDown()
     {
+        if (DeathAnimator.IsPlayingAnimation)
+        {
+            return;
+        }
         if (!_isJumpCanceled) {
             _isJumpCanceled = true;
         }

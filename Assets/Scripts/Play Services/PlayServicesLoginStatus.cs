@@ -11,6 +11,10 @@ public class PlayServicesLoginStatus : Singleton<PlayServicesLoginStatus>
     {
         PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
     }
+    public void Authenticate()
+    {
+        PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
+    }
 
     internal void ProcessAuthentication(SignInStatus status)
     {

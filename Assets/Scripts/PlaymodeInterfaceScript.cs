@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+
 [DefaultExecutionOrder(-1)]
 public class PlaymodeInterfaceScript : MonoBehaviour
 {
@@ -49,7 +50,6 @@ public class PlaymodeInterfaceScript : MonoBehaviour
             _newScore.SetText(FileIO.ReadInt("scoreData.bin").ToString("000000"));//yeah not so clean i guess
             _deathMessage.SetText(_scriptWeGetDeathMessageFrom.GetDeathMessage());
             _statsText.SetText(_stats.GetStatsString());
-            _scriptForDeathSFX.PlayDeathSFX();
             _deathScreenGroup.SetActive(true);
             _panel.SetActive(true);
             _overlayGroup.SetActive(false);
