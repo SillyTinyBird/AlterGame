@@ -8,7 +8,8 @@ public class ScrollScript : MonoBehaviour
     private static float _scrollAmount = 1f;
     void FixedUpdate()
     {
-        _objetToScroll.MovePosition(new Vector3(transform.position.x - _scrollAmount, transform.position.y));
+        transform.position = new Vector3(transform.position.x - _scrollAmount, transform.position.y);
+        //_objetToScroll.MovePosition(new Vector3(transform.position.x - _scrollAmount, transform.position.y));
     }
     public static void SetSpeed(float speed) => _scrollAmount = speed;
 }
