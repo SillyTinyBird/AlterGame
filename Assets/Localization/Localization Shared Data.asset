@@ -187,6 +187,11 @@ MonoBehaviour:
     m_Key: mainMenu/Canvas/SafeArea/Menu/Leaderboard/Options
     m_Metadata:
       m_Items: []
+  - m_Id: 27650014065827840
+    m_Key: mainMenu/Canvas/SafeArea/Credits/Scroll View/Viewport/Content/Privacy
+      Policy/Text (TMP)
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

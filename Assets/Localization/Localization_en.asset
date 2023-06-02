@@ -206,6 +206,10 @@ MonoBehaviour:
     m_Localized: Leaderboard
     m_Metadata:
       m_Items: []
+  - m_Id: 27650014065827840
+    m_Localized: Privacy policy
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
