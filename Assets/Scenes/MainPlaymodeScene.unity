@@ -5304,7 +5304,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 131.7
+  m_fontSize: 142.65
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7718,7 +7718,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 103.1
+  m_fontSize: 135.95
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -9943,6 +9943,7 @@ MonoBehaviour:
   _scriptForDeathSFX: {fileID: 409828915}
   _ads: {fileID: 295216286}
   _stats: {fileID: 1753540968}
+  _pauseButton: {fileID: 1428525418}
 --- !u!114 &1753540966
 MonoBehaviour:
   m_ObjectHideFlags: 0

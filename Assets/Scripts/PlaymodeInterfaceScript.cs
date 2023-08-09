@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 [DefaultExecutionOrder(-1)]
 public class PlaymodeInterfaceScript : MonoBehaviour
@@ -17,6 +18,7 @@ public class PlaymodeInterfaceScript : MonoBehaviour
     [SerializeField] private FailSFX _scriptForDeathSFX;
     [SerializeField] private IronSourceAdsScript _ads;
     [SerializeField] private StatsMessage _stats;
+    [SerializeField] private Button _pauseButton;
     public void SetPause(bool isPaused)
     {
         if (isPaused)
@@ -31,6 +33,15 @@ public class PlaymodeInterfaceScript : MonoBehaviour
     private void Awake()
     {
         SetPause(true);
+    }
+    private void OnApplicationFocus(bool focus)
+    {
+        if (_panel.activeSelf)
+            return;
+        if (!focus)
+        {
+            _pauseButton.onClick.Invoke();
+        }
     }
     public void LoadingCompleetAction()
     {
